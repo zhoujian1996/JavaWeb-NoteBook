@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JSP基础（2）</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 生成目录列表
+        var outline = document.createElement("ul");
+        outline.setAttribute("id", "outline-list");
+        outline.style.cssText = "border: 1px solid #ccc;";
+        document.body.insertBefore(outline, document.body.childNodes[0]);
+        // 获取所有标题
+        var headers = document.querySelectorAll('h1,h2,h3,h4,h5,h6');
+        for (var i = 0; i < headers.length; i++) {
+            var header = headers[i];
+            var hash = _hashCode(header.textContent);
+            // MarkdownPad2无法为中文header正确生成id，这里生成一个
+            header.setAttribute("id", header.tagName + hash);
+            // 找出它是H几，为后面前置空格准备
+            var prefix = parseInt(header.tagName.replace('H', ''), 10);
+            outline.appendChild(document.createElement("li"));
+            var a = document.createElement("a");
+            // 为目录项设置链接
+            a.setAttribute("href", "#" + header.tagName + hash)
+            // 目录项文本前面放置对应的空格
+            a.innerHTML = new Array(prefix * 4).join('&nbsp;') + header.textContent;
+            outline.lastChild.appendChild(a);
+        }
+    });
+    // 类似Java的hash生成方式，为一段文字生成一段基本不会重复的数字
+    function _hashCode(txt) {
+         var hash = 0;
+         if (txt.length == 0) return hash;
+         for (i = 0; i < txt.length; i++) {
+              char = txt.charCodeAt(i);
+              hash = ((hash<<5)-hash)+char;
+              hash = hash & hash; // Convert to 32bit integer
+         }
+         return hash;
+    }
+</script>
+</head>
+<body>
+<h2>1、JSP表达式语言EL</h2>
+<p><img src="22.PNG" />
+在JSP开发中，为了获取Servlet域对象中存储的数据，经常需要书写很多Java代码，这样的做法会使得JSP页面混乱，难以维护。为此在JSP中提供了EL表达式。EL表达式是Expressionb Language的缩写，它是一种简单的数据访问语言。<br></p>
+<pre><code>EL表达式总是放在大括号里，而且前面有一个美元符前缀。
+
+${firstThing.secondThing}
+</code></pre>
+
+<p><img src="0.PNG" /></p>
+<ul>
+<li><strong>点号左边的变量要么是一个Map（有键），要么是一个bean（有性质)</strong><br><br></li>
+<li><strong>pageContext隐士对象是一个bean，它有获取方法，所以其他隐士对象都是Map</strong><br><br></li>
+<li><strong>如果对象是一个bean，但是指定的性质不存在，会抛出一个异常。</strong><br><br></li>
+</ul>
+<h3>1.1 EL语法</h3>
+<h4>1.1.1、EL中的变量</h4>
+<p>EL表达式中的变量就是一个基本存储单元，EL表达式可以将变量映射到一个对象上，具体示例如下:</p>
+<pre><code>${product}
+</code></pre>
+
+<p><strong>在上述示例中，product就是一个变量。EL表达式中的变量不用事先定义就可以直接使用</strong><br><br></p>
+<h4>1.1.2、EL中的运算符</h4>
+<p><strong>1、点运算符(.)</strong><br></p>
+<p><strong>EL表达式中的点运算符，用于访问JSP页面中某些对象的属性，如JavaBean对象、List对象、Array对象等，其语法格式如下：</strong><br></p>
+<pre><code>${customer.name}
+</code></pre>
+
+<p><em>在上面的语法格式中，表达式${customer.name}中的点运算符的作用就是访问customer对象中的name属性</em><br></p>
+<p><strong>2、方括号运算符([])</strong><br></p>
+<p><strong>EL表达式中的方括号运算符与点运算符的功能相同，都用于访问JSP页面中某些对象的属性，当获取的属性名中包含一些特殊符号，如“-”或“？”等并非字母或数字的符号，就只能使用方括号运算符来访问该属性:</strong><br></p>
+<pre><code>${user[&quot;My-Name&quot;]}
+</code></pre>
+
+<p>与点运算符的区别：<br></p>
+<ul>
+<li>点运算符和方括号运算符在某种情况下可以互换，如${student.name}等价于${user[&quot;name&quot;]}<br><br></li>
+<li>方括号运算符和点运算符可以相互结合使用，例如，表达式 ${user[0].userName}<br><br></li>
+<li>方括号运算符还可以访问List集合或数组中指定索引的某个元素，如表达式 ${user[0]}用于访问集合或数组中第一个元素。<br><br></li>
+</ul>
+<p><strong>3、算数运算符</strong><br></p>
+<pre><code>${1-2 }&lt;br&gt;
+
+${1*2 }&lt;br&gt;
+
+${122+22 }&lt;br&gt;
+
+${10/4 }&lt;br&gt;
+</code></pre>
+
+<p><strong>4、比较运算符</strong><br></p>
+<pre><code>&gt;  &lt; == != &lt;= &gt;=
+</code></pre>
+
+<p><strong>5、逻辑运算符</strong><br></p>
+<pre><code>&amp;&amp;(and)  ||（or) 
+</code></pre>
+
+<p><strong>6、empty运算符</strong><br></p>
+<p><strong>EL表达式中的empty运算符用于判断某个对象是否为null或“”，结果为布尔类型</strong><br><br></p>
+<pre><code>${empty var}
+</code></pre>
+
+<h3>1.2 EL隐士对象</h3>
+<p>隐含对象名称|描述
+-|-|
+pageContext|对应于JSP页面中的pageContext对象
+pageScope|代表page域中用于保存属性的Map对象
+requestrScope|代表equest域中用于保存属性的Map对象
+sesssionScope|代表session域中用于保存属性的Map对象
+applicationScope|代表application域中用于保存属性的Map对象
+param|表示了一个保存所有请求参数的Map对象
+paramValues|表示一个保存了所有请求参数的Map对象，它对于某个请求参数，返回的是一个String类型的数组
+header|表示保存了所有http请求头字段的Map对象
+headerValues|表示了一个保存了所有http请求头字段的Map对象，返回String类型的数组
+cookie|用来取得使用者的Cookie值，cookie的类型时Map
+initParam|表示了一个保存所有Web应用初始化参数的Map对象</p>
+<ul>
+<li><strong>pageContext可以获取其他10个隐式对象，</strong><br><br></li>
+<li><strong>pageScope、requestScope、sessionScope、applicationScope值是用于获取指定域的隐士对象</strong><br><br></li>
+<li><strong>param和paramValues是用于获取请求参数的隐士对象，header和headerValues是用于获取HTTP请求消息头的隐士对象</strong><br><br></li>
+<li><strong>cookie用于获取Cookie信息的隐士对象</strong><br><br></li>
+<li><strong>initParam用于获取Web应用初始化信息的隐士对象</strong><br></li>
+</ul>
+<h4>1.2.1 pageContext对象</h4>
+<p><font color="red" size="10px"><strong>为了获取JSP页面的隐士对象（注意区分JSP页面的隐式对象与EL表达式的隐式对象），可以使用EL表达式中的pageContext隐式对象。</strong></font><br><br></p>
+<p><font color="blue" size="10px">可以利用EL表达式中的pageContext对象获取JSP中的隐式对象。</font><br></p>
+<pre><code>&lt;!-- 使用pageContext对象获取request对象 --&gt;
+${pageContext.request.characterEncoding }&lt;br&gt;
+
+&lt;!-- 使用pageContext对象获取response对象 --&gt;
+${pageContext.response.contentType }&lt;br&gt;
+
+&lt;!-- 使用pageContext对象获取ServletContext对象 --&gt;
+${pageContext.servletContext.serverInfo }&lt;br&gt;
+
+&lt;!-- 使用pageContext对象获取ServletConfig对象 --&gt;
+${pageContext.servletConfig.servletName }&lt;br&gt;
+</code></pre>
+
+<h4>1.2.2 Web域相关对象</h4>
+<p><strong>在Web开发中，pageContext、HttpServletRequest、HttpSession和ServletContext这4个对象之所以能存储数据，是因为他们内部都定义了一个Map集合，这些Map集合是有一定作用范围的，例如HttpRequest对象存储的数据只能在当前请求中可以获取到。习惯性的，我们把这些Map集合称为域，这些Map集合所在的对象称为域对象。在EL表达式中，为了获取指定域的数据，提供了pageScope、requestScope、SessionScope和applicationScope</strong>	<br><br><br>
+<font color="blue" size="10px"><strong>这些所谓scope就是Map对象<strong></font><br><br>
+<font color="red" size="10px"></strong>需要注意的是，EL表达式只能在这4个作用域中获取数据</strong> </font><br><br></p>
+<pre><code>    &lt;% request.setAttribute(&quot;userName&quot;, &quot;1&quot;); %&gt;
+&lt;%session.setAttribute(&quot;userName&quot;, &quot;2&quot;); %&gt;
+&lt;%pageContext.setAttribute(&quot;userName&quot;, &quot;3&quot;); %&gt;
+&lt;% application.setAttribute(&quot;userName&quot;, &quot;4&quot;); %&gt;
+
+表达式\${pageScope.userName }的值为 ${pageScope.userName }&lt;br&gt;
+表达式\${requestScope.userName }的值为 ${requestScope.userName }&lt;br&gt;
+表达式\${sessionScope.userName }的值为 ${sessionScope.userName  }&lt;br&gt;
+表达式\${applicationScope.userName }的值为 ${applicationScope.userName  }&lt;br&gt;
+</code></pre>
+
+<p><strong>需要注意的是，使用EL表达式获取某个域对象的属性时，可以不使用这些隐式对象来指定查找域，而是直接饮用域中的属性名称即可，例如表达式${userName}就是在page、request、session、application这四个作用域内依次查找userName属性</strong><br><br></p>
+<p><font color="red"> 测试属性的保存于传递与使用 </font><br></p>
+<p><font color="red"> 1、在Servlet中处理请求数据，并对一些数据进行保存，转发，存储在数值域中。方便在EL表达式中使用 </font><br></p>
+<pre><code>package com.monkey.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.bean.Dog;
+import com.bean.Person;
+
+public class TestServlet extends HttpServlet {
+
+@Override
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+
+
+    //设置request requestScope
+    req.setAttribute(&quot;name&quot;, &quot;zhoujian&quot;);
+
+    //设置session属性 sessionScope
+    req.getSession().setAttribute(&quot;password&quot;, &quot;123&quot;);
+
+    //设置application属性(EL表达式) applicationScope
+    req.getServletContext().setAttribute(&quot;quanwen&quot;, &quot;shujuku&quot;);
+
+    //设置pageScope
+    req.getRequestDispatcher(&quot;/Testel.jsp&quot;).forward(req, resp);
+
+
+}
+</code></pre>
+
+<p><font color="red"> 2、在JSP页面的EL表达式中获取数据并进行页面的展示</font><br></p>
+<pre><code>    获取属性&lt;br&gt;
+
+request中存储的属性：${requestScope.name}&lt;br&gt;
+
+session中存储的属性: ${sessionScope.password }&lt;br&gt;
+
+applicationScope(ServletContex)中存储的属性：${applicationScope.quanwen }&lt;br&gt;
+</code></pre>
+
+<p><font color="red"> 3、页面</font><br></p>
+<p><img src="1.PNG" />
+<img src="2.PNG" /></p>
+<h4>1.2.3、param和paramValues对象</h4>
+<p><strong>在JSP页面中，经常需要获取客户端传递的请求参数，为此，EL表达式提供了param和paramValues两个隐式对象，这两个隐式对象专门用于获取客户端访问JSP页面时传递的请求参数</strong><br><br></p>
+<p><strong>1、param对象</strong><br><br>
+param对象用于获取请求参数中的某个值，它是Map类型，与request.getParameter()方法等价，在使用EL获取参数时，如果参数不存在，返回的是空的字符串</p>
+<pre><code>${param.num}
+</code></pre>
+
+<p><strong>2、paramValues对象</strong>*<br><br>
+如果一个请求参数有多个值，可以使用paramVales对象来获取请求参数的所有值，该对象用于返回请求参数所有值组成的数组。</p>
+<pre><code>${paramValues.num}
+</code></pre>
+
+<p><img src="3.PNG" /></p>
+<h4>1.2.4、header和headerValues对象</h4>
+<p><br>
+<strong>（1）header对象</strong><br>
+header对象用于获取请求头字段中某个值</p>
+<pre><code>${header[&quot;user-agent&quot;]}
+</code></pre>
+
+<h4>1.2.5、Cookie对象<br></h4>
+<p>在JSP开发中，经常需要获取客户端的Cookie信息，为此，在EL表达式中，提供了Cookie的隐式对象，该对象是一个代表所有Cookie信息的Map集合，Map集合中元素的键为各个Cookie的名称，值则为对应的Cookie对象<br></p>
+<pre><code>    获取cookie对象的信息：${cookie.userName}
+
+    获取cookie对象的名称：${cookie.userName.name}
+
+    获取cookie对象的值:${cookie.userNAME。vaule}
+</code></pre>
+
+<h4>1.2.6 initParam对象</h4>
+<p>在开发一个Web应用程序时，通常会在web.xml文件中配置一些初始化参数，为了方便获取这些参数，EL表达式提供了initParam隐式对象，该对象可以获取Web应用程序中全局初始化参数，具体示例如下:</p>
+<pre><code>    ${initParam.count}
+</code></pre>
+
+<h3>1.3 自定义EL函数</h3>
+<p><strong>EL表达式简化了JSP页面的书写，使不懂Java编程的开发人员也可以编写工能够强大的JSP页面。但EL本身的功能毕竟有限，例如，对于循环语句，EL表达式是很难实现的。因此，EL表达式允许用户自定义EL函数。</strong><br></p>
+<h4>1.3.1HTML注入</h4>
+<pre><code>解决在页面中编写 &lt;  &gt;这种HYML代码的问题。
+</code></pre>
+
+<p><img src="22.PNG" /></p>
+<h2>2、JSP标准标签库（用标签替代Java语言）</h2>
+<p>在JSP中可以通过Java代码来获取信息，但是过多的Java代码会使得JSP页面非常复杂。为此，Sun公司制定了一套标准标签库JSTL.<br><br></p>
+<h3>2.1JSTL入门</h3>
+<h4>2.1.1什么是JSTL</h4>
+<p>从JSP1.1规范开始，JSP就支持使用自定义标签，使用自定义标签大大降低了JSP页面的复杂度。同时增强了代码的重用性，为此许多Web厂商都定制了自身应用的标签库，然而同一功能的标签由不同的Web应用厂商指定可能是不同的，这就导致市面上出现了很多功能相同的标签。为了解决这个问题，Sun公司制订了一套标准标签库（Java Server Pages Standard Tag Library)，简称JSTL.</p>
+<pre><code>在JSTL1.1规范中，有5个标准的标签库。
+</code></pre>
+
+<p><img src="4.PNG" /></p>
+<p><strong>首先需要导入相关的jar包</strong><br><br>s
+<strong>在Eclipse中导入相关jar包之后的目录如下：</strong><br><br></p>
+<p><img src="5.PNG" /></p>
+<p><strong>使用</strong><br><br></p>
+<pre><code>&lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=ISO-8859-1&quot;
+pageEncoding=&quot;ISO-8859-1&quot;%&gt;
+
+//使用taglib指令导入core标签库，uri属性用于指定引入标签库描述符文件的URI,prefix属性用于指定引入标签库描述文件的前缀
+&lt;%@ taglib prefix=&quot;c&quot; uri=&quot;http://java.sun.com/jsp/jstl/core&quot; %&gt;
+
+
+&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=ISO-8859-1&quot;&gt;
+&lt;title&gt;Insert title here&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;c:out value=&quot;HellowoRS&quot;&gt;&lt;/c:out&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<h3>2.2、JSTL中的Core标签库</h3>
+<p><img src="6.PNG" /></p>
+<h4>2.2.1、&lt;c:out&gt;标签：想页面输出一段内容</h4>
+<p><img src="7.PNG" /></p>
+<p>语法1：<br></p>
+<pre><code>&lt;c:out value=&quot;value&quot; [default=&quot;&quot;] [escapeXml=&quot;{true|false}&quot;/&gt;
+</code></pre>
+
+<p>语法2：<br></p>
+<pre><code>    &lt;c:out value=&quot;value&quot;  [escapeXml=&quot;{true|false}&quot;]      defaultValue &lt;/c:out&gt;
+</code></pre>
+
+<ul>
+<li>value:用于指定输出的文本内容</li>
+<li>default:用于指定当value属性为null时所输出的默认值</li>
+<li>
+<p>escapeXml:用于指定是否将&gt; ,&lt;,&amp;,&quot;、“,等特殊字符进行HTML编码转换后再进行输出，默认值是true.</p>
+<pre><code>&lt;!-- 注意EL表达式结合JSTL标签shiyon --&gt;
+&lt;c:out value=&quot;${param.username}&quot; default=&quot;unkown&quot;&gt;&lt;/c:out&gt;&lt;br&gt;
+
+&lt;c:out value=&quot;${param.username}&quot; &gt;unkown&lt;/c:out&gt;&lt;br&gt;
+</code></pre>
+
+</li>
+</ul>
+<h4>2.2.2 &lt;c:set&gt;标签:Sets the result of an expression evaluation in a 'scope'</h4>
+<p><img src="8.PNG" /></p>
+<ul>
+<li>
+<p>value:设置属性的值</p>
+</li>
+<li>
+<p><font color="red">var:指定要设置域对象属性的名称</p>
+</li>
+<li>
+<p>scope:属性所在域对象</font></p>
+</li>
+<li>
+<p><font color="blue">target:用于指定要设置属性的对象，这个对象必须是JavaBean对象或者Map对象</p>
+</li>
+<li>property:指定要为当前对象设置的属性名称</font></li>
+</ul>
+<p><font color="red"><strong>(1)使用&lt;c:set&gt;标签设置域对象中某个属性的值</strong></font></p>
+<pre><code>    &lt;!--获取请求request中的参数并进行设置 --&gt;
+    &lt;c:set var=&quot;userName&quot; scope=&quot;request&quot; value=&quot;${param.userName} &quot;&gt;&lt;/c:set&gt;
+    &lt;!-- 输出设置参数  注意EL表达式通常放在value属性中 --&gt;
+    &lt;c:out value=&quot;${userName}&quot;/&gt;
+</code></pre>
+
+<p><font color="red"><strong>(1)使用&lt;c:set&gt;标签设置UserBean对象和Map对象中某个属性的值</strong></font></p>
+<pre><code>   &lt;!-- 使用&lt;c:set&gt;标签设置JavaBean 对象和Map对象 --&gt;
+&lt;!-- 首先生成或获取一个Java对象 --&gt;
+&lt;jsp:useBean id=&quot;user&quot; class=&quot;com.monkey.bean.User&quot; scope=&quot;page&quot;&gt;&lt;/jsp:useBean&gt;
+
+&lt;!-- 使用&lt;c:set&gt;标签设置属性 --&gt;
+&lt;c:set target=&quot;${user}&quot; property=&quot;userName&quot; value=&quot;zhoujian&quot;/&gt;
+&lt;c:set target=&quot;${user}&quot; property=&quot;passWord&quot; value=&quot;123&quot;/&gt;
+
+&lt;c:out value=&quot;${user.userName} &quot;&gt;&lt;/c:out&gt;
+&lt;c:out value=&quot;${user.passWord }&quot;&gt;&lt;/c:out&gt;
+
+
+&lt;!-- 定义一个Map集合，并将其绑定给request对象 --&gt;
+&lt;% HashMap&lt;String,String&gt; map = new HashMap&lt;&gt;();
+    request.setAttribute(&quot;preference&quot;, map);
+%&gt;
+
+&lt;!-- 通过target属性将Map集合指定为要设置属性的对象    --&gt;
+&lt;c:set target=&quot;${preference}&quot; property=&quot;color&quot; value=&quot;green&quot; &gt;&lt;/c:set&gt;
+</code></pre>
+
+<h2>	&lt;c:out value=&quot;${preference.color} &quot;&gt;&lt;/c:out&gt;</h2>
+<h4>2.2.3、&lt;c:remove&gt;标签:在JSP页面中删除域对象中的属性</h4>
+<p><img src="9.PNG" /></p>
+<ul>
+<li>var:用于指定要删除的属性名称</li>
+<li>
+<p>scope:用于指定要删除属性所属的域对象</p>
+<pre><code>&lt;!-- 设置属性，注意域 --&gt;
+&lt;c:set scope=&quot;request&quot; var=&quot;company&quot; value=&quot;传播止咳&quot;/&gt;
+&lt;c:set scope=&quot;request&quot; var=&quot;url&quot;  value=&quot;www.baidu.com&quot;/&gt;
+
+设置的属性为:&lt;br&gt;
+&lt;c:out value=&quot;${requestScope.company} &quot;&gt;&lt;/c:out&gt;&lt;br&gt;
+&lt;c:out value=&quot;${url} &quot;&gt;&lt;/c:out&gt;&lt;br&gt;
+
+移除属性之后:
+&lt;c:remove var=&quot;company&quot;/&gt;
+&lt;c:remove var=&quot;url&quot;/&gt;
+
+&lt;c:out value=&quot;${requestScope.company} &quot;&gt;&lt;/c:out&gt;&lt;br&gt;
+&lt;c:out value=&quot;${url} &quot;&gt;&lt;/c:out&gt;
+</code></pre>
+
+</li>
+</ul>
+<hr />
+<h4>2.2.4、&lt;c:catch&gt;标签</h4>
+<p><img src="10.PNG" /></p>
+<p>在操作JSP页面时，偶尔也会出现一些异常，为了捕获这些异常，Core标签库中提供了一个&lt;c:catch&gt;标签，该标签用于捕获这些异常，Core标签库中提供了一个&lt;c:catch&gt;标签，该标签用于捕获嵌套在&lt;c:catch&gt;标签体中出现的异常</p>
+<ul>
+<li>
+<p>var:用于表示&lt;c:catch&gt;标签捕获的异常对象，其值是一个静态的字符串</p>
+<pre><code>&lt;!-- 尝试捕获异常 --&gt;
+&lt;c:catch var=&quot;exception&quot;&gt;
+
+    &lt;%
+
+        int i =0 ;
+        int j =10;
+        System.out.println(j/i);
+    %&gt;
+
+
+&lt;/c:catch&gt;
+
+&lt;!-- 输出异常信息 --&gt;
+异常：&lt;c:out value=&quot;${exception} &quot;&gt;&lt;/c:out&gt;&lt;br&gt;
+异常:&lt;c:out value=&quot;${exception.message }&quot;/&gt;&lt;br&gt;
+异常:&lt;c:out value=&quot;${exception.cause }&quot;/&gt;
+</code></pre>
+
+</li>
+</ul>
+<h2><img src="11.PNG" /></h2>
+<hr />
+<hr />
+<h4>2.2.4、&lt;c:if&gt;标签</h4>
+<p>在程序开发中，经常需要使用if语句进行条件判断，如果要在JSP页面中进行条件判断，就需要进行条件判断，就需要使用Core标签库中提供的&lt;c:if&gt;标签，该标签专门用于完成JSP页面中的条件判断。</p>
+<p><img src="12.PNG" /></p>
+<ul>
+<li>test:用于设置逻辑表达式<br><br></li>
+<li>var:用于指定逻辑表达式中变量的名字<br><br></li>
+<li>
+<p>scope:用于指定var变量的作用范围，默认值为page。如果属性test的计算结果为true，那么标签体将被执行，否则标签体不执行</p>
+<pre><code>&lt;!--用于设置属性 --&gt;
+&lt;c:set scope=&quot;request&quot; var=&quot;count&quot; value=&quot;1&quot;&gt;&lt;/c:set&gt;
+&lt;c:out value=&quot;${requestScope.count }&quot;&gt;&lt;/c:out&gt;
+
+&lt;!--  使用 &lt;c:if&gt; 标签进行判断 --&gt;
+&lt;c:if test=&quot;${count&gt;0 }&quot;  var=&quot;count&quot; scope=&quot;request&quot;&gt;
+
+    &lt;% out.print(12324214); %&gt;
+&lt;/c:if&gt;
+</code></pre>
+
+</li>
+</ul>
+<hr />
+<hr />
+<h4>2.2.4、&lt;c:choose&gt;标签</h4>
+<p>在程序开发中不仅需要使用if条件语句，还经常会使用if-else语句，为了在JSP页面中可以完成同样的功能，Core标签库提供&lt;c:choose&gt;标签，该标签用于指定多个条件选择的组合边界，它必须与&lt;c:when&gt;、&lt;c:otherwise&gt;标签一起使用.<br>
+<img src="13.PNG" /><br><Br><br><Br>
+<img src="14.PNG" /><br><Br><br><Br>
+<img src="15.PNG" /><br><Br><br><Br></p>
+<ul>
+<li>&lt;c:choose&gt;标签中没有属性，在它的标签体中只能嵌套一个或多个&lt;c:when&gt;标签和零个或者1个&lt;c:otherwise&gt;标签</li>
+<li>&lt;c:when&gt;标签中只有一个test属性，该属性的值为布尔类型，test属性支持动态值，其值可以是一个条件表达式，如果条件表达式的值为true，就执行这个&lt;c:when&gt;标签体的内容<br><br></li>
+<li>
+<p>&lt;c:otherwise&gt;标签没有属性，它必须作为&lt;c:choose&gt;标签的最后分支出现，当所有的&lt;c:when&gt;标签的test条件都不成立时，才执行和输出&lt;c:otherwise&gt;标签体中的内容。</p>
+<pre><code>&lt;c:choose&gt;
+
+    &lt;c:when test=&quot;${param.user=='zhoujian'} &quot;&gt;
+        ${param.user} is a manager 
+    &lt;/c:when&gt;
+
+    &lt;c:when test=&quot;${param.user=='cege'}&quot;&gt;
+        ${param.user } is a employee
+    &lt;/c:when&gt;
+
+    &lt;c:otherwise&gt;
+        这是一个什么re
+    &lt;/c:otherwise&gt;
+
+
+&lt;/c:choose&gt;
+</code></pre>
+
+</li>
+</ul>
+<hr />
+<hr />
+<h4>2.2.5、&lt;c:forEach&gt;标签</h4>
+<p>在JSP页面中，经常需要对集合对象进行循环迭代操作，为此，Core标签库提供了&lt;c:forEach&gt;标签，该标签专门用于迭代集合对象中的元素，如List、Set、Map数组等，并且能重复执行标签体中的内容。<br><Br>
+<img src="16.PNG" /></p>
+<ul>
+<li>var：将当前迭代到的元素保存到page域中的名称<br><br></li>
+<li>items:将要迭代的集合对象<br><Br></li>
+<li>
+<p>varStatus:指定当前迭代状态信息的对象保存到page域中的名称。<br><Br></p>
+</li>
+<li>
+<p>begin:指定从集合中第几个元素开始进行迭代。<br><br></p>
+</li>
+<li>step:指定迭代的步长</li>
+</ul>
+<p><font color="red"><strong>forEACH标签迭代数组</strong></font></p>
+<pre><code>            &lt;%  
+            String[] fruits = {&quot;apple&quot;,&quot;orange&quot;,&quot;grape&quot;,&quot;banana&quot;};
+            request.setAttribute(&quot;fruits&quot;, fruits);
+        %&gt;
+
+    水果为：&lt;br&gt;
+    &lt;c:forEach items=&quot;${fruits }&quot; var=&quot;element1&quot;&gt;
+
+        ${element1}&lt;br&gt;
+
+    &lt;/c:forEach&gt;
+</code></pre>
+
+<p><font color="red"><strong>forEACH标签迭代Map集合</strong></font><br></p>
+<p>在迭代Map类型的集合时，迭代出的每个元素的类型都为Map.Entry，Entry代表Map集合中的每一个条目项，其中，getKey()方法可获得条目项的关键字，getValue()方法可获得条目项的值。</p>
+<pre><code>    &lt;%
+    Map&lt;String,String&gt;  map = new HashMap&lt;&gt;();
+    map.put(&quot;1&quot;, &quot;china&quot;);
+    map.put(&quot;2&quot;, &quot;suining&quot;);
+    map.put(&quot;3&quot;, &quot;xuzhou&quot;);
+    map.put(&quot;4&quot;, &quot;jiangsu&quot;);
+    request.setAttribute(&quot;map&quot;,map);
+%&gt;
+
+&lt;c:forEach items=&quot;${map}&quot; var=&quot;ele&quot;&gt;
+    &lt;c:out value=&quot;${ele.key }&quot;&gt;&lt;/c:out&gt;
+    &lt;c:out value=&quot;${ele.value }&quot;&gt;&lt;/c:out&gt;&lt;br&gt;
+
+&lt;/c:forEach&gt;
+</code></pre>
+
+<p><font color="red"><strong>forEACH标签迭代集合中元素的状态信息</strong></font><br></p>
+<p><strong>varStatus属性可以获取以下信息：</strong><br><br></p>
+<p>(1)count:表示元素在集合中的序号，从1开始计数<br><br>
+（2）index:表示当前元素在集合中的索引，从0开始计数<br><br>
+（3）first:表示当前是否为集合中的第一个元素<br><br>
+（4）last:表示当前集合是否为集合中的最后一个元素。<br><br></p>
+<pre><code>    &lt;% 
+    String[] arr={&quot;交通大学&quot;,&quot;复旦大学&quot;,&quot;上海大学&quot;,&quot;东华大学&quot;,&quot;上海外国语大学&quot;,&quot;上海理工大学&quot;};
+    request.setAttribute(&quot;school&quot;,arr);
+%&gt;
+
+
+&lt;!-- 构造一个表格 --&gt;
+&lt;table border=&quot;1px&quot; bgcolor=&quot;blue&quot;&gt;
+&lt;!-- 构造表头 --&gt;
+    &lt;tr&gt;
+        &lt;th&gt;学校&lt;/th&gt;
+        &lt;th&gt;序号&lt;/th&gt;
+    &lt;/tr&gt;
+&lt;!-- 迭代获取表格中的元素 --&gt;
+&lt;c:forEach items=&quot;${school}&quot; var=&quot;name&quot; varStatus=&quot;status&quot;&gt;
+      &lt;tr&gt;
+        &lt;td&gt;${name}&lt;/td&gt;
+        &lt;td&gt;${status.index}&lt;/td&gt;
+        &lt;c:if test=&quot;${status.count%2==0}&quot;&gt;
+        &lt;/c:if&gt;
+      &lt;/tr&gt;
+&lt;/c:forEach&gt;    
+
+&lt;/table&gt;
+</code></pre>
+
+<h4>2.2.6 &lt;c:forTokens&gt;标签</h4>
+<p>&lt;c:forTokens&gt;标签与&lt;c:forEach&gt;标签类似，都可以完成迭代功能，只不过&lt;c:forTokens&gt;标签用于迭代字符串中用指定分隔符分隔的子字符串，并且能重复执行标签体。
+<img src="17.PNG" /></p>
+<ul>
+<li>items:用于指定将要分隔的字符串<br><br></li>
+<li>delims:用于指定具体的分隔符，可以是一个或多个。<br><Br></li>
+<li>var:指定当前迭代元素保存到page域中的属性名称<br><br></li>
+<li>varStatus:指定当前迭代状态信息的对象保存到page域中的属性名称<br><br></li>
+<li>begin:用于指定从集合中的第几个元素开始进行迭代。<br><br></li>
+<li>
+<p>step:用于 指定迭代的步长，即迭代因子的增量。<br><br></p>
+<p>&lt;c:forTokens items=&quot;Spring,autum,winter|Summer|Autum&quot; delims=&quot;,|&quot; var=&quot;season&quot; &gt;
+	${season }</p>
+<p>&lt;/c:forTokens&gt;</p>
+</li>
+</ul>
+<h4>2.2.7 c:param 标签 c:url标签</h4>
+<p><img src="18.PNG" />
+<font color=页面"red" size="10px"><strong>在开发一个Web应用程序时，通常会在JSP页面中完成URL的重写以及重定向等特殊功能，为了完成这些功能，在Core标签库中，也提供了相应功能的标签，这些标签包括&lt;c:param&gt;、&lt;c:redirect&gt;、&lt;c:url&gt;。其中，&lt;c:param&gt;用于获取URL地址中的附加参数，&lt;c:url&gt;标签用于按特定的规则重新构造URL,&lt;c:redirect&gt;标签负责重定向。</strong></font><br><br>
+<img src="19.PNG" />
+在访问到一个JS页面时，通常会在URL中传递一些参数信息，为了方便完成这种功能，Core标签库中提供了一个&lt;c:url&gt;标签，该标签可以在JSP页面中构造一个新的URL地址，实现URL地址的重写，</p>
+<ul>
+<li>value:用于指定构造的URL<br><br></li>
+<li>context:用于指定导入同一个服务器下其他Web应用的名称。<br><br></li>
+<li>var:将构造的URL地址保存到域对象的属性名称。<br><br></li>
+<li>
+<p>scope:用于指定将构造好的URL保存到域对象中。<br><br></p>
+<pre><code>使用绝对路径构造URL:&lt;br&gt;
+    &lt;c:url var=&quot;myUrl&quot; value=&quot;register.jsp&quot; &gt;
+        &lt;!-- 使用c:param添加参数 --&gt;
+        &lt;c:param name=&quot;userName&quot; value=&quot;张三&quot;&gt;&lt;/c:param&gt;
+        &lt;c:param name=&quot;password&quot; value=&quot;123&quot;&gt;&lt;/c:param&gt;
+    &lt;/c:url&gt;
+    &lt;a href=&quot;${myUrl }&quot;&gt;register.jsp&lt;/a&gt;&lt;br&gt;
+
+
+    使用相对路径构造URL:&lt;br&gt;
+    &lt;c:url var=&quot;myUrl1&quot; value=&quot;register.jsp?userName=Tom&amp;password=123&quot;&gt;&lt;/c:url&gt;
+    &lt;a href=&quot;${myUrl1 }&quot;&gt;register.jsp&lt;/a&gt;
+</code></pre>
+
+</li>
+</ul>
+<h4>2.2.8 c:redirect</h4>
+<p><strong>相当于 response.sendRedirect</strong><b
+r><br>
+<img src="20.PNG" />
+* URL：用于指定转发或重定向到目标资源的URL地址<br><br>
+* context:用于指定重定向到同一个服务器中的其他Web应用的名称。<br></p>
+<pre><code>    &lt;c:url var=&quot;myurl&quot; value=&quot;register.jsp&quot;&gt;
+        &lt;c:param name=&quot;userName&quot; value=&quot;zhoujian&quot;&gt;&lt;/c:param&gt;
+        &lt;c:param name=&quot;password&quot; value=&quot;123&quot;&gt;&lt;/c:param&gt;
+    &lt;/c:url&gt;
+
+    &lt;c:redirect url=&quot;${myurl }&quot;&gt;&lt;/c:redirect&gt;
+</code></pre>
+
+<p><img src="21.PNG" />
+<img src="22.PNG" /></p>
+<h3>2.3JSTL中的Functions标签库</h3>
+<p><strong>为了简化JSP页面中对字符串的操作，JSTL的Functions标签库中提供了一套自定义EL函数，这套自定义EL函数包括JSP页面制作者经常要用到的字符串操作。</strong><br><br>
+<img src="23.png" /></p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

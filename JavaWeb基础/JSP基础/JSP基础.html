@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JSP基础</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 生成目录列表
+        var outline = document.createElement("ul");
+        outline.setAttribute("id", "outline-list");
+        outline.style.cssText = "border: 1px solid #ccc;";
+        document.body.insertBefore(outline, document.body.childNodes[0]);
+        // 获取所有标题
+        var headers = document.querySelectorAll('h1,h2,h3,h4,h5,h6');
+        for (var i = 0; i < headers.length; i++) {
+            var header = headers[i];
+            var hash = _hashCode(header.textContent);
+            // MarkdownPad2无法为中文header正确生成id，这里生成一个
+            header.setAttribute("id", header.tagName + hash);
+            // 找出它是H几，为后面前置空格准备
+            var prefix = parseInt(header.tagName.replace('H', ''), 10);
+            outline.appendChild(document.createElement("li"));
+            var a = document.createElement("a");
+            // 为目录项设置链接
+            a.setAttribute("href", "#" + header.tagName + hash)
+            // 目录项文本前面放置对应的空格
+            a.innerHTML = new Array(prefix * 4).join('&nbsp;') + header.textContent;
+            outline.lastChild.appendChild(a);
+        }
+    });
+    // 类似Java的hash生成方式，为一段文字生成一段基本不会重复的数字
+    function _hashCode(txt) {
+         var hash = 0;
+         if (txt.length == 0) return hash;
+         for (i = 0; i < txt.length; i++) {
+              char = txt.charCodeAt(i);
+              hash = ((hash<<5)-hash)+char;
+              hash = hash & hash; // Convert to 32bit integer
+         }
+         return hash;
+    }
+</script>
+</head>
+<body>
+<h2>1、JSP技术</h2>
+<h3>1.1什么是JSP</h3>
+<pre><code>JSP全名是Java Server Page，它是建立在Servlet规范智商的动态网页开发技术。
+
+在Jsp文件中，HTML代码与Java代码共同存在，其中，HTML代码用来实现网页中静态内容的展示，Java用来实现网页中动态内容的展示。
+</code></pre>
+
+<hr />
+<pre><code>    &lt;%@ page language=&quot;java&quot; contentType=&quot;text/html; charset=utf-8&quot;
+        pageEncoding=&quot;utf-8&quot;%&gt;
+    &lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;
+    &lt;html&gt;
+    &lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;&gt;
+    &lt;title&gt;Insert title here&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+
+        当前访问时间是:
+        &lt;% out.print(new java.util.Date()); %&gt;
+
+
+
+    &lt;/body&gt;
+    &lt;/html&gt;
+</code></pre>
+
+<h3>1.2 JSP运行原理</h3>
+<p>在Tomcat服务器的web.xml（D:\java\apache-tomcat-9.0.0.M26\conf）文件中实现了JSP的相关配置，具体如下:</p>
+<pre><code>  &lt;!-- The servlet mappings for the built in servlets defined above.  Note  --&gt;
+  &lt;!-- that, by default, the CGI and SSI servlets are *not* mapped.  You    --&gt;
+  &lt;!-- must uncomment these mappings (or add them to your application's own --&gt;
+  &lt;!-- web.xml deployment descriptor) to enable these services              --&gt;
+
+&lt;!-- The mapping for the default servlet --&gt;
+&lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;default&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;/&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+
+&lt;!-- The mappings for the JSP servlet --&gt;
+&lt;servlet-mapping&gt;
+    &lt;servlet-name&gt;jsp&lt;/servlet-name&gt;
+    &lt;url-pattern&gt;*.jsp&lt;/url-pattern&gt;
+    &lt;url-pattern&gt;*.jspx&lt;/url-pattern&gt;
+&lt;/servlet-mapping&gt;
+</code></pre>
+
+<p><em>从上面的配置信息可以看出，以.jsp为扩展名的URL访问请求都是由 org.apache.jasper.servle.JSPServlet处理，所以Tomcat中的JSP引擎就是这个Servlet程序，该Servlet程序实现了对所有JSP页面的解析。</em><br></p>
+<h3>1.3分析JSP生成的Servlet代码</h3>
+<p>当用户第一次访问JSP页面时，该页面都会被JspServlet翻译成一个Servlet源文件，然后将源文件编译为.class文件，Servlet源文件和.class文件都放在 </p>
+<pre><code>    /*
+ * Generated by the Jasper component of Apache Tomcat
+ * Version: Apache Tomcat/9.0.1
+ * Generated at: 2017-12-17 12:00:02 UTC
+ * Note: The last modified time of this file was set to
+ *       the last modified time of the source file after
+ *       generation to assist with modification tracking.
+ */
+package org.apache.jsp;
+
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.jsp.*;
+import java.util.ArrayList;
+import java.util.List;
+
+// 一个final类，继承了 HttpJspBase，其实这个类也是继承了Servlet的
+public final class _1_jsp extends org.apache.jasper.runtime.HttpJspBase
+    implements org.apache.jasper.runtime.JspSourceDependent,
+                 org.apache.jasper.runtime.JspSourceImports {
+
+ int a = 1;   //这一句对应的就是JSP中的   &lt;%! int a = 1; %&gt;   用于声明成员变量和方法
+
+  private static final javax.servlet.jsp.JspFactory _jspxFactory =
+          javax.servlet.jsp.JspFactory.getDefaultFactory();
+
+  //对应&lt;%@taglib uri=&quot;http://java.sun.com/jsp/jstl/core&quot; prefix=&quot;c&quot;%&gt;
+  //引入 jstl标签库，其实是封装到了一个Map集合中   
+  private static java.util.Map&lt;java.lang.String,java.lang.Long&gt; _jspx_dependants;
+
+  static {
+    _jspx_dependants = new java.util.HashMap&lt;java.lang.String,java.lang.Long&gt;(2);
+    _jspx_dependants.put(&quot;/WEB-INF/lib/standard.jar&quot;, Long.valueOf(1513507951000L));
+    _jspx_dependants.put(&quot;jar:file:/Users/sam/Library/apache-tomcat-9.0.1/webapps/day10_2/WEB-INF/lib/standard.jar!/META-INF/c.tld&quot;, Long.valueOf(1098682290000L));
+  }
+
+
+ //******************中间省略一些代码**************
+
+
+  //重写init()方法
+  public void _jspInit() {
+  }
+  //重写destroy()方法
+  public void _jspDestroy() {
+  }
+
+  //重写service()方法
+  public void _jspService(final javax.servlet.http.HttpServletRequest request, final javax.servlet.http.HttpServletResponse response)
+      throws java.io.IOException, javax.servlet.ServletException {
+
+final java.lang.String _jspx_method = request.getMethod();
+if (!&quot;GET&quot;.equals(_jspx_method) &amp;&amp; !&quot;POST&quot;.equals(_jspx_method) &amp;&amp; !&quot;HEAD&quot;.equals(_jspx_method) &amp;&amp; !javax.servlet.DispatcherType.ERROR.equals(request.getDispatcherType())) {
+  response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, &quot;JSPs only permit GET POST or HEAD&quot;);
+  return;
+}
+
+//jsp中的一些内置对象，pageContext，session，application，out等
+final javax.servlet.jsp.PageContext pageContext;
+javax.servlet.http.HttpSession session = null;
+final javax.servlet.ServletContext application;
+final javax.servlet.ServletConfig config;
+javax.servlet.jsp.JspWriter out = null;
+final java.lang.Object page = this;
+javax.servlet.jsp.JspWriter _jspx_out = null;
+javax.servlet.jsp.PageContext _jspx_page_context = null;
+
+
+try {
+  response.setContentType(&quot;text/html; charset=UTF-8&quot;);
+  pageContext = _jspxFactory.getPageContext(this, request, response,
+            null, true, 8192, true);
+  _jspx_page_context = pageContext;
+  application = pageContext.getServletContext();
+  config = pageContext.getServletConfig();
+  session = pageContext.getSession();
+  out = pageContext.getOut();
+  _jspx_out = out;
+
+  //用out往浏览器写入html标签
+  out.write(&quot;\n&quot;);
+  out.write(&quot;\n&quot;);
+  out.write(&quot;\n&quot;);
+  out.write(&quot;\n&quot;);
+  out.write(&quot;&lt;!DOCTYPE html PUBLIC \&quot;-//W3C//DTD HTML 4.01 Transitional//EN\&quot; \&quot;http://www.w3.org/TR/html4/loose.dtd\&quot;&gt;\n&quot;);
+  out.write(&quot;&lt;html&gt;\n&quot;);
+  out.write(&quot;&lt;head&gt;\n&quot;);
+  out.write(&quot;&lt;meta http-equiv=\&quot;Content-Type\&quot; content=\&quot;text/html; charset=UTF-8\&quot;&gt;\n&quot;);
+  out.write(&quot;&lt;title&gt;Insert title here&lt;/title&gt;\n&quot;);
+  out.write(&quot;&lt;/head&gt;\n&quot;);
+  out.write(&quot;&lt;body&gt;\n&quot;);
+  out.write(&quot;    &quot;);
+  out.write(&quot;\n&quot;);
+  out.write(&quot;    \n&quot;);
+  out.write(&quot;    &quot;);
+</code></pre>
+
+<h3>1.4JSP基本语法</h3>
+<h4>1.4.1 JSP模板元素</h4>
+<p><strong>JSP页面可以按照编写HTML的方式来编写，其中可以包含HTML文件的所有静态内容，在静态的HTML内容中可以嵌套JSP的其他各种元素来产生动态内容和执行业务逻辑。JSP页面中的静态HTML内容成为JSP模板元素。JSP模板元素定义了网络的基本骨架，即定义了页面的布局和结构</strong><br></p>
+<h4>1.4.2 JSP表达式</h4>
+<p>JSP表达式用于将程序数据输出到客户端，它将要输出的变量或表达式直接封装到 一 “&lt;%=&quot;开头 以”%&gt;“结尾的标记中，其基本语法格式如下：</p>
+<pre><code>&lt;%=expression %&gt;
+</code></pre>
+
+<h4>1.4.3 JSP脚本片段</h4>
+<p>JSP脚本片段是指嵌套在&lt;% 和  %&gt;之中的一条或者多条Java程序代码，这些Java程序代码必须严格遵守Java语法规范，否则编译会报错。</p>
+<pre><code>&lt;%   %&gt;
+</code></pre>
+
+<ul>
+<li>在一个JSP页面中，可以出现多个脚本片段</li>
+<li>在两个或多个脚本片段中间可以嵌套文本，HTML标记或其他JSP元素</li>
+<li>这些脚本片段中的代码可以相互访问</li>
+</ul>
+<h4>1.4.4 JSP声明</h4>
+<pre><code>当JSP页面被翻译为Servlet程序时，JSP中包含的脚本片段、表达式、模板元素豆浆转换为Servlet中_jspService()方法中的程序代码。
+
+这时，JSP脚本片段中定义的变量都将成为_jspService()方法中的局部变量
+
+在JSP中为了定义全局变量 方法 ，提供了声明
+</code></pre>
+
+<p><strong>声明：</strong><br></p>
+<pre><code>&lt;%!  &gt;
+</code></pre>
+
+<p>被声明的Java代码都将被翻译到Servlet的_jspService()方法之外，即在JSP声明中定义的都是 成员方法、成员变量、静态变量、静态代码块等。</p>
+<h4>1.4.5JSP注释</h4>
+<pre><code>&lt;%--  %&gt;
+</code></pre>
+
+<p><strong>小结</strong><br></p>
+<p>语法|作用</p>
+<h3>1.5 JSP指令</h3>
+<p>为了设置JSP页面中的一些信息，Sun公司提供了JSP指令。<br>
+<strong>JSP2.0中共定义了page、include和taglib三种指令，每种指令都定义了各自的属性</strong><br>
+<img src="0.PNG" />
+	&lt;%@ 指令 属性名=“属性值”%&gt;</p>
+<h4>1.5.1 Page指令</h4>
+<p>在JSP页面中，经常需要对页面的某些特征进行描述，例如，页面的额编码方式，JSP页面采用的语言等等，这时可以通过page指令来实现：</p>
+<pre><code>&lt;%@ page=&quot;属性值&quot;%&gt;
+</code></pre>
+
+<p>（1）language:</p>
+<p>language属性有默认，写成别的编译不了</p>
+<p>写法是：&lt;%@ page language=&quot;java&quot;%&gt;
+<img src="1.PNG" /></p>
+<p><strong>web.xml文件配置通用的错误页面:</strong><br></p>
+<pre><code>在JSP程序中，如果为每个页面指定一个错误页面，这样的做法显然很繁琐，这时，可以在web.xml文件中使用 &lt;error-page&gt;元素为整个Web应用程序设置错误处理页面:&lt;br&gt;
+
+&lt;error-page&gt;
+
+    &lt;error-code&gt; 404 &lt;/error-code&gt;
+    &lt;location&gt;  /404.jsp &lt;/location&gt;
+&lt;/error-page&gt;
+</code></pre>
+
+<h4>1.5.2 include指令</h4>
+<p>有时候，需要在JSP页面中静态包含一个文件，例如HTML问价，文本文件等，这时，可以通过include指令来实现，include指令的拘役语法格式如下:<br></p>
+<pre><code>&lt;%@ include file=&quot;relativeURL&quot; %&gt;
+</code></pre>
+
+<h3>1.6、JSP隐式对象</h3>
+<p><strong>在JSP页面中，有一些对象需要频繁使用，如果每次创建这些对象则会非常麻烦，为此JSP提供了9个隐式对象，他们是JSP默认创建的，可以直接在JSP页面使用。</strong><br></p>
+<p><img src="2.PNG" /></p>
+<p><img src="3.PNG" /></p>
+<h4>1.6.1 Request对象</h4>
+<p>request对象是javax.servlet.http.HttpServletRequest 类的实例。每当客户端请求一个JSP页面时，JSP引擎就会制造一个新的request对象来代表这个请求。</p>
+<p>request对象提供了一系列方法来获取HTTP头信息，cookies，HTTP方法等等。</p>
+<h4>1.6.2 response对象</h4>
+<p>response对象是javax.servlet.http.HttpServletResponse类的实例。当服务器创建request对象时会同时创建用于响应这个客户端的response对象。</p>
+<p>response对象也定义了处理HTTP头模块的接口。通过这个对象，开发者们可以添加新的cookies，时间戳，HTTP状态码等等。</p>
+<h4>1.6.3 session对象</h4>
+<p>session对象是 javax.servlet.http.HttpSession 类的实例。和Java Servlets中的session对象有一样的行为。</p>
+<p>session对象用来跟踪在各个客户端请求间的会话。</p>
+<h4>1.6.4 application对象</h4>
+<p>application对象直接包装了servlet的ServletContext类的对象，是javax.servlet.ServletContext 类的实例。</p>
+<p>这个对象在JSP页面的整个生命周期中都代表着这个JSP页面。这个对象在JSP页面初始化时被创建，随着jspDestroy()方法的调用而被移除。</p>
+<p>通过向application中添加属性，则所有组成您web应用的JSP文件都能访问到这些属性。</p>
+<h4>1.6.5 config对象</h4>
+<p>onfig对象是 javax.servlet.ServletConfig 类的实例，直接包装了servlet的ServletConfig类的对象。</p>
+<p>这个对象允许开发者访问Servlet或者JSP引擎的初始化参数，比如文件路径等。</p>
+<p>以下是config对象的使用方法，不是很重要，所以不常用：</p>
+<h4>1.6.6page 对象</h4>
+<p>这个对象就是页面实例的引用。它可以被看做是整个JSP页面的代表。</p>
+<p>page 对象就是this对象的同义词。</p>
+<h4>1.6.7 exception 对象</h4>
+<p>exception 对象包装了从先前页面中抛出的异常信息。它通常被用来产生对出错条件的适当响应。</p>
+<p><img src="4.PNG" /></p>
+<h4>1.6.8out对象</h4>
+<p>在JSP页面中，经常需要向客户端发送文本内容，这时，可以使用out对象来实现。out对象是 javax.servlet.jsp.JspWriter类的实例对象，它的作用于ServletResponse.getWriter()方法返回PrintWriter对象非常相似，都是用来向客户端发送文本形式的实体内容。不同的是out对象类型为JspWiter，它相当于一种带缓存功能的PrintWriter。</p>
+<h4>1.6.9 pageContext对象</h4>
+<p><strong>在JSP页面中，要想获取JSP隐式对象，可以使用pageContext对象，pageContext对象是javax.Servlet.jsp.pageContext类的实例对象，它代表当前JSP页面的运行环境，并提供了一系列用于获取其他隐式对象的方法。</strong><br>
+<font color="red"> <strong>通过PageContext获取其他隐式对象</strong> </font><br>
+<img src="5.PNG" /></p>
+<p><font color="red" size="10px"> <strong>pageContext对象不仅提供了获取隐式对象的方法，还提供了存储数据的功能。pageContext对象存储数据是通过操作属性来实现的。</strong> </font><br>
+<img src="6.jpG" /></p>
+<h3>1.7 JSP标签(JSP动作)</h3>
+<p><strong>JSP页面可以嵌套一些Java代码来完成某种功能，但是这种Java代码会是的JSP页面很乱，不利于调试，为了减少JSP页面中的Java代码，SUN公司允许在JSP页面中嵌套一些标签，这些标签可以完成各种通用的JSP页面功能，被称为JSP标签</strong><br></p>
+<p>JSP标签也称为JSP Action(JSP动作)元素，用于在JSP页面中封装Java代码，这样使得在JSP页面中避免直接编写Java代码，让JSP真正成为MVC模式中的作为视图作用。
+<img src="6.PNG" /></p>
+<h4>1.7.1 &lt;jsp:include&gt;标签</h4>
+<p>在JSP页面中，为了把其他资源的输出内容插入到当期JSP页面的输出内容中，JSP技术提供了&lt;jsp:include&gt;标签，&lt;jsp:include&gt;标签的具体格式语法如下：<br></p>
+<pre><code>&lt;jsp:forward page=&quot;relativeURL&quot; flush=&quot;true|false&quot;&gt;
+</code></pre>
+
+<ul>
+<li><strong>page:指定引入资源的相对路径</strong></li>
+<li><strong>flush：指定是否将当前页面的内容刷新输出到客户端</strong></li>
+</ul>
+<h4>1.7.2 &lt;jsp:forward&gt;标签</h4>
+<p>在JSP页面中，经常需要将请求转发给另外一个资源，这时，除了RequestDispatcher.forward()方法可以实现外，还可以通过&lt;jsp:forward&gt;标签来实现。&lt;jsp:forward&gt; 标签的具体语法格式如下：<br></p>
+<pre><code>&lt;jsp:forward page=&quot;relativeURL&quot;/&gt;
+</code></pre>
+
+<ul>
+<li><strong>Page属性用于指定请求转发到资源的相对路径，该路径是相对于当前JSP页面的URL</strong>   </li>
+</ul>
+<h2>2、JavaBean组件</h2>
+<p>在软件开发时，一些数据和功能需要在很多地方使用，为了方便将他们进行“移植”，Sun公司提出了一种JavaBean技术，使用JavaBean可以对数据和功能进行封装，做到一次编写，到处运行。</p>
+<h3>2.1 JavaBean</h3>
+<h4>2.1.1什么是JavaBean</h4>
+<pre><code>JavaBean是Java开发语言中一个可以重复使用的软件组件，它本质上就是一个Java类，
+
+为了规范JavaBean的开发，Sun公司发布了JavaBean的规范，它要求一个标准的JavaBean遵循一定的规则：
+</code></pre>
+
+<ul>
+<li>必须有一个公共的，无参的构造方法</li>
+<li>它提供公共的setter方法和getter犯法让外部程序设置和获取JavaBean</li>
+</ul>
+<h3>2.2 JSP标签访问JavaBean</h3>
+<p>为了在JSP页面中简单快捷地访问JavaBean,并且充分地利用JavaBean的特性，JSP规范专门定义了三个JSP标签&lt;jsp:useBean&gt;、&lt;jsp:setProperty&gt;和&lt;jsp:setProperty&gt;。</p>
+<h4>2.2.1、&lt;jsp:useBean&gt;标签</h4>
+<p>&lt;jsp:useBean&gt;标签用于在某个指定的域范围（pageContext、request、session、application等)中查找一个指定名称的JavaBean对象，如果存在则直接返回该JavaBean对象的引用，如果不存在则实例化一个新的JavaBean对象并将它按指定的名称存储在指定的与范围内。JSP:useBean的语法格式如下：<br></p>
+<pre><code>    &lt;jsp:useBean  id=&quot;&quot;  
+
+                  [scope=&quot;{page|request|session|application}&quot;]
+
+                  class = &quot;package.class&quot;
+
+                  type=&quot;package.class&quot;
+
+                  beanName =&quot;&quot;&gt;
+</code></pre>
+
+<p><strong>jSP:useBean&gt;标签中有5个属性</strong><br></p>
+<ul>
+<li><strong>id:用于指定JavaBean实例对象的引用名称和其存储在域范围中的名称</strong><br><br></li>
+<li>
+<p><strong>scope:用于指定JavaBean实例对象所存储的域范围，其取值智能是page、request、session和application4个值中的一个，其默认值是page</strong><br><br></p>
+</li>
+<li>
+<p><strong>class:用于指定JavaBean的完整类名（即必须带有包名），JSP容器将使用这个类名来创建JavaBean的实例对象或作为查找到的JavaBean对象的类型</strong><br><br></p>
+</li>
+<li>
+<p><strong>type用于指定JavaBean对象的引用变量类型，它必须是JavaBean对象的类名称、父类名称或JavaBean实现的接口名称。type属性的默认值为class属性的设置值，当JSP容器将&lt;jsp:useBean&gt;标签翻译成Servlet程序时，它将使用type属性值作为JavaBea对象引用变量的类型。</strong><br><br></p>
+</li>
+<li>
+<p><strong>beanName:用于指定JavaBean的名称，它的值也是a.b.c的形式，这即可以代表一个类的完整名称，也可以代表a/b/c.ser这样的资源文件。</strong><br><br></p>
+</li>
+</ul>
+<hr />
+<hr />
+<p><font color="red"><strong>例1:单独使用class</strong></font><br></p>
+<pre><code>    &lt;jsp:useBean id=&quot;manager&quot; scope=&quot;page&quot;  class=&quot;com.monkey.bean.Manager&quot;&gt;         &lt;/jsp:useBean&gt;
+</code></pre>
+
+<p><font color="red"><strong>生成的Servlet:</strong></font><br></p>
+<pre><code>    //根据提供的class生成对象，注意变量名
+  com.monkey.bean.Manager manager = null;
+
+  //获取PAGE_SCOPE中的对象
+  manager = (com.monkey.bean.Manager) _jspx_page_context.getAttribute(&quot;manager&quot;, javax.servlet.jsp.PageContext.PAGE_SCOPE);
+
+//如果从域中获取的对象为空（即该域中没有存储对像）
+  if (manager == null){
+    //生成新的对象
+    manager = new com.monkey.bean.Manager();
+    //存储对象
+    _jspx_page_context.setAttribute(&quot;manager&quot;, manager, javax.servlet.jsp.PageContext.PAGE_SCOPE);
+
+    out.write(&quot;         &quot;);
+  }
+</code></pre>
+
+<p><strong>需要特别注意的是，翻译成的Servlet代码中，用于引用JavaBean实例对象的变量名和JavaBean存储在域中的名称均为id属性设置的值manager</strong><br></p>
+<hr />
+<hr />
+<p><font color="red"><strong>例2:单独使用type</strong></font><br></p>
+<pre><code>        &lt;jsp:useBean id=&quot;manager&quot; scope=&quot;page&quot; type=&quot;com.monkey.bean.Manager&quot;&gt;         &lt;/jsp:useBean&gt;
+</code></pre>
+
+<p><font color="red"><strong>生成的Servlet:</strong></font><br></p>
+<pre><code>    //生成对象
+         com.monkey.bean.Manager manager = null;
+    //获取域中的对象
+  manager = (com.monkey.bean.Manager) _jspx_page_context.getAttribute(&quot;manager&quot;, javax.servlet.jsp.PageContext.PAGE_SCOPE);
+    //没有获取到对象则报错
+  if (manager == null){
+    throw new java.lang.InstantiationException(&quot;bean manager not found within scope&quot;);
+  }
+</code></pre>
+
+<hr />
+<hr />
+<p><font color="red"><strong>例3:class属性和type属性结合使用</strong></font><br></p>
+<pre><code>&lt;jsp:useBean id=&quot;manager&quot;   type=&quot;com.monkey.bean.Manager&quot; beanName=&quot;com.monkey.bean.Manager&quot;&gt;         &lt;/jsp:useBean&gt;
+</code></pre>
+
+<p><font color="red"><strong>翻译成的Servlet</strong></font><br></p>
+<pre><code> com.monkey.bean.Manager manager = null;
+  manager = (com.monkey.bean.Manager) _jspx_page_context.getAttribute(&quot;manager&quot;, javax.servlet.jsp.PageContext.PAGE_SCOPE);
+  if (manager == null){
+    try {
+      manager = (com.monkey.bean.Manager) java.beans.Beans.instantiate(this.getClass().getClassLoader(), &quot;com.monkey.bean.Manager&quot;);
+    } catch (java.lang.ClassNotFoundException exc) {
+      throw new InstantiationException(exc.getMessage());
+    } catch (java.lang.Exception exc) {
+      throw new javax.servlet.ServletException(&quot;Cannot create bean of class &quot; + &quot;com.monkey.bean.Manager&quot;, exc);
+    }
+    _jspx_page_context.setAttribute(&quot;manager&quot;, manager, javax.servlet.jsp.PageContext.PAGE_SCOPE);
+    out.write(&quot;         &quot;);
+  }
+</code></pre>
+
+<p>从上面的代码可以看出，JSP容器会在scope属性指定的域范围内查找以id属性值为名称的JavaBean对象如果该域范围中不存在指定JavaBean对象，JSP容器会加载当前类的对象和beanName属性值作为参数传递给ava.beans类的instantiate()方法，去创建爱你新的JavaBean类对象。<br></p>
+<h4>2.2.2、&lt;jsp:setProperty&gt;标签：设置属性值</h4>
+<p><strong>&lt;jsp:useBean&gt;标签可以创JavaBean对象，但是要想为JavaBean对象设置属性，还需要通过&lt;jsp:setproperty&gt;标签来实现。其语法格式如下：</strong><br></p>
+<pre><code>&lt;jsp:setProperty name=&quot;beanInstanceName&quot;
+
+                 propert = &quot;propertyNmae&quot;  value =&quot;&quot;
+
+                 property=&quot;propertyNmae&quot;  param=&quot;parameterName&quot;
+
+                 property=&quot;propertyName&quot;/&gt;
+</code></pre>
+
+<ul>
+<li>
+<p><strong>name:用于指定JavaBean实例对象的名称，其值应给和&lt;jsp:useBean&gt;标签的id属性值相同。</strong><br><br></p>
+</li>
+<li>
+<p><strong>property:用于指定JavaBean实例对象的属性名</strong><br><br></p>
+</li>
+<li>
+<p><strong>param:用于指定请求信息中参数的名字在设置JavaBean的属性时，如果请求参数的名字和JavaBean属性的名字不同，可以使用param属性，将其指定的参数的值设置给JavaBean的属性。如果当前请求信息中没有param属性所指定的请求参数，那么&lt;jsp:setProperty&gt;什么也不做。</strong><br></p>
+</li>
+<li>
+<p><strong>value:用于指定为JavaBean实例对象的某个属性设置的值，其值可以是一个 字符串，也可以是一个JSP表达式。如果value属性的值是字符串，那么它将被自动转换成索要设置的JavaBean属性的类型</strong>
+<br><br></p>
+</li>
+</ul>
+<p><strong>在使用&lt;jsp:setProperty&gt;标签时，name属性和property属性必须指定，propertry属性可以单独使用，也可以和value属性或者param属性配合使用</strong><br></p>
+<hr />
+<p><font color="red" > <strong>property单独使用</strong> </font><br>
+（1）当Property属性值为JavaBean的一个属性名时，JSP容器会将请求消息中与property属性值同名的参数的值域赋值给JavaBean对应的属性。<br></p>
+<p>(2)当property的属性值为星号（*）时，容器会在请求信息中匹配所以和JavaBean的属性。</p>
+<p><font color="red" > <strong>（1）：缺点只能匹配一个，表单中的属性名必须和JavaBean中的属性名匹配</strong> </font><br>	
+ 	&lt;jsp:useBean id=&quot;manager&quot;   class=&quot;com.monkey.bean.Manager&quot; &gt;         &lt;/jsp:useBean&gt;
+ 	&lt;jsp:setProperty property=&quot;bonus&quot; name=&quot;manager&quot;/&gt;</p>
+<pre><code>&lt;%
+     manager = (com.monkey.bean.Manager)pageContext.getAttribute(&quot;manager&quot;);
+     out.print(manager.getBonus());
+
+%&gt;
+</code></pre>
+
+<p><font color="red" > <strong>翻译成sERvlet</strong> </font><br></p>
+<pre><code>    //引用
+     com.monkey.bean.Manager manager = null;
+    //获取对象
+  manager = (com.monkey.bean.Manager) _jspx_page_context.getAttribute(&quot;manager&quot;, javax.servlet.jsp.PageContext.PAGE_SCOPE);
+    //如果为空则生成一个空对象
+  if (manager == null){
+    manager = new com.monkey.bean.Manager();
+    _jspx_page_context.setAttribute(&quot;manager&quot;, manager, javax.servlet.jsp.PageContext.PAGE_SCOPE);
+    out.write(&quot;         &quot;);
+  }
+  out.write(&quot;\r\n&quot;);
+  out.write(&quot; \t&quot;);
+    //设置属性
+  org.apache.jasper.runtime.JspRuntimeLibrary.introspecthelper(_jspx_page_context.findAttribute(&quot;manager&quot;), &quot;bonus&quot;, request.getParameter(&quot;bonus&quot;), request, &quot;bonus&quot;, false);
+  out.write(&quot;\r\n&quot;);
+  out.write(&quot; \t\r\n&quot;);
+  out.write(&quot; \t&quot;);
+
+     manager = (com.monkey.bean.Manager)pageContext.getAttribute(&quot;manager&quot;);
+
+     out.print(manager.getBonus());
+</code></pre>
+
+<hr />
+<p><font color="red" > <strong>（2）：缺点表单中的属性必须要和JavaBean中的属性名匹配</strong> </font><br></p>
+<pre><code>    &lt;jsp:useBean id=&quot;manager&quot;   class=&quot;com.monkey.bean.Manager&quot; &gt;         &lt;/jsp:useBean&gt;
+    &lt;jsp:setProperty property=&quot;*&quot; name=&quot;manager&quot;/&gt;
+
+    &lt;%
+         manager = (com.monkey.bean.Manager)pageContext.getAttribute(&quot;manager&quot;);
+         out.print(manager.getBonus());
+         out.print(manager.getCompany());
+
+    %&gt;
+</code></pre>
+
+<p><font color="red" > <strong>翻译成sERvlet</strong> </font><br></p>
+<pre><code>  manager = (com.monkey.bean.Manager) _jspx_page_context.getAttribute(&quot;manager&quot;, javax.servlet.jsp.PageContext.PAGE_SCOPE);
+  if (manager == null){
+    manager = new com.monkey.bean.Manager();
+    _jspx_page_context.setAttribute(&quot;manager&quot;, manager, javax.servlet.jsp.PageContext.PAGE_SCOPE);
+    out.write(&quot;         &quot;);
+  }
+  out.write(&quot;\r\n&quot;);
+  out.write(&quot; \t&quot;);
+  //在这里封装好处理请求
+  org.apache.jasper.runtime.JspRuntimeLibrary.introspect(_jspx_page_context.findAttribute(&quot;manager&quot;), request);
+  out.write(&quot;\r\n&quot;);
+  out.write(&quot; \t\r\n&quot;);
+  out.write(&quot; \t&quot;);
+
+     manager = (com.monkey.bean.Manager)pageContext.getAttribute(&quot;manager&quot;);
+     out.print(manager.getBonus());
+     out.print(manager.getCompany());
+</code></pre>
+
+<p><img src="7.PNG" /></p>
+<hr />
+<p><font color="red" > <strong>property属性和param属性配合使用</strong> </font><br></p>
+<p><strong>在实际开发中，很多时候服务器需要使用表单传递的数据作为JavaBean对象的属性赋值，但是如果，单中表单项name属性的值和name属性中名不匹配，该如何应对呢？要想实现上述功能，就需要在&lt;jsp:setProprty&gt;标签中使用property属性和param属性</strong><br>
+		   &lt;jsp:useBean id=&quot;manager&quot;   class=&quot;com.monkey.bean.Manager&quot; &gt;         &lt;/jsp:useBean&gt;</p>
+<pre><code>     &lt;!-- param中的参数需要和表单中提交的数据相匹配  本行中获取表单中 com:部分的value值 --&gt;
+     &lt;jsp:setProperty property=&quot;company&quot; param=&quot;com&quot; name=&quot;manager&quot;/&gt;
+
+    &lt;jsp:setProperty property=&quot;bonus&quot; param=&quot;bon&quot; name=&quot;manager&quot;/&gt;
+
+    &lt;%
+         manager = (com.monkey.bean.Manager)pageContext.getAttribute(&quot;manager&quot;);
+         out.print(manager.getBonus());
+         out.print(manager.getCompany());
+
+    %&gt;
+</code></pre>
+
+<p><img src="8.PNG" /></p>
+<hr />
+<p><font color="red" > <strong>property属性和value属性配合使用</strong> </font><br>
+<strong>当property属性和value属性配合使用时，JSP容器会使用value属性的值为JavaBean的属性赋值，优先于PARAM从表单中获取属性</strong><br></p>
+<h3>2.2.3 &lt;jsp:getProperty&gt;标签</h3>
+<p><strong>为了获取JavaBean的属性值，JSP规范提供了&lt;jsp:getProperty&gt;标签，它可以访问JavaBean的属性，并把属性的值转换为一个字符串发送到响应输出流中</strong><br></p>
+<pre><code>&lt;jsp：getProperty name=&quot;beanInstanceName&quot; property=&quot;propertyName&quot;、&gt;
+</code></pre>
+
+<p><strong>（1）:name:用于指定JavaBean实例对象的名称，其值应该和&lt;jsp:useBean&gt;标签的id属性值相同</strong><br></p>
+<p><strong>（2）：property:用于指定JavaBean实例对象的属性名</strong><br></p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->

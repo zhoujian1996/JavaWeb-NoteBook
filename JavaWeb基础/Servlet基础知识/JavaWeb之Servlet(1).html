@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JavaWeb之Servlet</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 生成目录列表
+        var outline = document.createElement("ul");
+        outline.setAttribute("id", "outline-list");
+        outline.style.cssText = "border: 1px solid #ccc;";
+        document.body.insertBefore(outline, document.body.childNodes[0]);
+        // 获取所有标题
+        var headers = document.querySelectorAll('h1,h2,h3,h4,h5,h6');
+        for (var i = 0; i < headers.length; i++) {
+            var header = headers[i];
+            var hash = _hashCode(header.textContent);
+            // MarkdownPad2无法为中文header正确生成id，这里生成一个
+            header.setAttribute("id", header.tagName + hash);
+            // 找出它是H几，为后面前置空格准备
+            var prefix = parseInt(header.tagName.replace('H', ''), 10);
+            outline.appendChild(document.createElement("li"));
+            var a = document.createElement("a");
+            // 为目录项设置链接
+            a.setAttribute("href", "#" + header.tagName + hash)
+            // 目录项文本前面放置对应的空格
+            a.innerHTML = new Array(prefix * 4).join('&nbsp;') + header.textContent;
+            outline.lastChild.appendChild(a);
+        }
+    });
+    // 类似Java的hash生成方式，为一段文字生成一段基本不会重复的数字
+    function _hashCode(txt) {
+         var hash = 0;
+         if (txt.length == 0) return hash;
+         for (i = 0; i < txt.length; i++) {
+              char = txt.charCodeAt(i);
+              hash = ((hash<<5)-hash)+char;
+              hash = hash & hash; // Convert to 32bit integer
+         }
+         return hash;
+    }
+</script>
+</head>
+<body>
+<p><strong>得意处论地谈天，俱是水底捞月；拂意时吞冰啮雪，才为火内栽莲。</strong></p>
+<h2>1、基础知识</h2>
+<h3>1.1浏览器请求与服务器响应模型</h3>
+<p><img src="1.PNG" /></p>
+<ul>
+<li><strong>HTTP是Web上客户端与服务器之间进行通信时所用的协议</strong><br><br></li>
+<li><strong>服务器使用HTTP向客户发送HTML</strong></li>
+</ul>
+<p><img src="2.PNG" /></p>
+<p><font color="red" size="100px"><strong>这很重要，下面的字段是标准，所开发的接口都围绕着着写要素来展开，理解即可，尤其是一些重要的首部字段，决定这服务器与浏览器之间的交互方式与各自的动作！！！</strong></font><br>
+<strong>请求流的关键要素</strong><br></p>
+<ul>
+<li>HTTP方法(要完成的动作）。</li>
+<li>要访问的页面(URL)。</li>
+<li>表单参数（如方法参数等)。</li>
+</ul>
+<p><strong>响应流的关键要素</strong><br></p>
+<ul>
+<li>状态码（表示请求是否成功)</li>
+<li>内容类型(包括文本、图片、HTML等）。</li>
+<li>内容（具体的HTML、图片等)。</li>
+</ul>
+<p><strong>URL</strong>
+<img src="100.PNG" /></p>
+<p><strong>静态页面和动态页面</strong><br></p>
+<ul>
+<li>静态页面：原封不动地呆在目录中。服务器找到静态页面，并把它原样传回给客户。每个客户看到的东西都一样。<br></li>
+<li>Web服务器应用只提供静态页面，但是有一个辅助应用可以生成非静态的即时页面，而且这个辅助应用能与Web服务器通信。动态页面可以是一个编目、Web日志，甚至只是一个随机选择显示图片的页面.
+*</li>
+</ul>
+<h3>Eclipse中JavaWeb</h3>
+<p><strong>目录结构</strong>
+<br>
+<img src="4.PNG" /></p>
+<h2>2、Web应用体系</h2>
+<h3>2.1、什么是容器</h3>
+<p><strong>Servlet没有main方法。它们受控于另一个Java应用，这个Java应用称为容器</strong><br>
+<em>Tomcat就是这样一个容器。如果Web服务器应用得到一个指向某Servlet的请求（而不是其他请求，如请求一个普通的静态HTML页面），此时服务器不是把这个请求交给Servlet本身，而是交给部署该Servlet的容器。要由容器向Servlet提供HTTP请求和响应，而且要由容器调用Servlet的方法。</em></p>
+<p><img src="5.PNG" /></p>
+<h3>2.2容器能提供什么？</h3>
+<ul>
+<li>通信支持：利用容器提供的方法，能够轻松的让Servlet与Web服务器对话。无需自己建立ServerSocket、监听端口、创建流等。容器知道自己与Web服务器之间的协议，所以你的Servlet不必担心Web服务器和自己Web代码之间的API。</li>
+<li>生命周期管理：容器控制着Servlet的生与死。它会负责加载类、实例化和初始化Servlet、调用Servlet方法，并使servlet实例能够被垃圾回收。有了容器的控制，你就不用太多的考虑资源管理</li>
+<li>多线程支持：容器会自动的为它接收的每个Servlet请求创建一个新的线程，针对客户的请求，如果servlet已经运行完响应的HTTP方法，这个线程就会结束（也就是会死掉）。这并不是说不用考虑线程安全性，还是会遇到同步的问题到 。</li>
+<li>声明方式实现安全：利用容器，可以使用XML部署描述来配置（和修改）安全性，而不必将其硬编码写到servlet（或其他）类代码中。 <strong>注解到底好不好</strong></li>
+<li>JSP支持</li>
+</ul>
+<h3>2.3 容器如何处理请求</h3>
+<p><img src="6.PNG" />
+<img src="7.PNG" />
+<img src="8.PNG" />
+<img src="9.PNG" />
+<img src="10.PNG" />
+<img src="11.PNG" />
+<img src="12.PNG" /></p>
+<h3>2.4容器是怎样根据url找到servlet</h3>
+<p><strong>使用部署描述文件将URL映射到Servlet</strong><br>
+将Servlet部署到Web容器时，会创建一个相当简单的XML文档，这称为部署描述文件（DD),部署描述文件会告诉容器如何运行你的Servlet和JSP。尽管使用部署描述文件不只是为了映射Servlet名，最起码要知道，可以使用两个XML元素把URL映射到servlet,其中一个将客户知道的URL名映射到你自己的内部名，另一个元素把你自己的内部名映射到一个完全限定类名。<br>
+<img src="13.PNG" /></p>
+<p><strong>除了把URL映射到实际的Servlet，还可以使用部署描述文件对Web应用的其他方面进行定制，包括安全角色、错误页面、标记库、初始配置信息等，</strong><br></p>
+<h3>2.5 MVC初探</h3>
+<p><strong>模型-视图-控制器（MVC)就是把业务逻辑从Servlet中农抽出来，把它放在一个模型中，所谓模型就是一个可重用的普通Java类。模型是业务数据（如购物车的状态）和处理改数据的方法（规则）的组合。</strong><br></p>
+<p><img src="14.PNG" />
+<img src="15.PNG" /></p>
+<h2>3 Servlet基础知识</h2>
+<p><strong>Servlet的存在就是要为客户服务。Servlet的任务是得到一个客户的请求，再发回一个响应。请求可能很简单:请给我一个欢迎页面，也可能很复杂：为我的购物车结账。这个请求携带着一些中要的数据，你的Servlet代码必须知道怎么找到和使用这个请求。响应也携带者一些信息，浏览器需要这些信息来显示一个页面（或下载数据），你的Servlet代码必须知道怎么发送这些信息。或者不发送。。。。。你的Servlet也可以把请求传递给其他人（另一个页面、Servlet或者JSP）.</strong></p>
+<h3>3.1Servle生命周期</h3>
+<p><img src="16.PNG" />
+<img src="17.PNG" />
+<strong>流程：</strong><br></p>
+<ul>
+<li>项目部署后启动服务器，并没有执行Servlet的无参构造器方法，在Web容器启动时并没有创建Servlet对象。</li>
+<li>用户提交请求URL后，马上可以看到无参构造方法、init()方法、Service()方法执行。</li>
+<li>刷新页面，发现只会执行Service()方法，每刷新一次，即每提交一次请求，就会执行一次Service方法。</li>
+<li>让另外一个浏览器也发出同样的请求，会发现只执行service()方法，而无参构造方法、init()方法均未执行。</li>
+<li>正常关闭Tomcat，发现destroy()方法也会执行。</li>
+</ul>
+<h3>3.2Servlet特征</h3>
+<p><strong>Servlet的特征</strong><br></p>
+<ul>
+<li>Servlet是单例多线程的，只创建一个servlet对象，但是每次请求都会起一个线程并在自己线程栈内存中执行service方法。<br></li>
+<li>一个 Servlet 实例只会执行一次无参构造器与 init()方法，并且是在第一次访问时执行。<br></li>
+<li>用户每提交一次对当前 Servlet 的请求，就会执行一次 service()方法。<br></li>
+<li>一个 Servlet 实例只会执行一次 destroy()方法，在应用停止时执行。<br></li>
+<li>由于 Servlet 是单例多线程的，所以为了保证其线程安全性，一般情况下是不建议在 Servlet类中定义可修改的成员变量，因为每个线程均可修改这个成员变量，会出现线程安全问题。</li>
+<li>由于 Servlet 是单例多线程的，所以为了保证其线程安全性，一般情况下是不建议在 Servlet类中定义可修改的成员变量，因为每个线程均可修改这个成员变量，会出现线程安全问题。</li>
+</ul>
+<h3>3.3 Servlet的继承体系</h3>
+<p><img src="18.PNG" /></p>
+<p>(1)一般程序继承 HTTPServlet，覆盖其中的 doGet、doPost等方法，覆盖的方法会在Service()方法中调用。<br>
+<img src="19.PNG" />
+<img src="20.PNG" />
+<img src="21.PNG" /></p>
+<pre><code>每个请求都在一个单独的线程中运行！！！
+容器运行多个线程来处理对一个Servlet的多个请求。
+对应每个客户请求，会生成一对新的请求和响应对象。
+</code></pre>
+
+<p><img src="22.PNG" /></p>
+<p><img src="23.PNG" /></p>
+<h3>3.4 ServletConfig对象</h3>
+<p><strong>ServletConfig对象：从属于每一个Servlet</strong><br></p>
+<ul>
+<li>
+<p>每个Servlet都要一个ServletConfig对象</p>
+</li>
+<li>
+<p>用于向Servlet传递部署信息（例如数据库或企业bean的查找名），而你不想把这个信息硬编码写到Servlet中(servlet初始化参数）</p>
+</li>
+<li>
+<p>用于访问 ServletContext</p>
+</li>
+<li>
+<p>参数在部署描述文件中配置</p>
+</li>
+</ul>
+<h3>3.5 ServvletContext对象</h3>
+<p><strong>ServletContext:从属于整个应用</strong><br></p>
+<ul>
+<li>
+<p>每个Web应用有一个ServletContext（应该叫做AppContext才对）</p>
+</li>
+<li>
+<p>用于访问Web应用参数(也在部署描述文件中配置)</p>
+</li>
+<li>
+<p>相当于一种应用公告栏，可以在这里放置消息（称为属性），应用的其他部分可以访问这些消息</p>
+</li>
+<li>
+<p>用于得到服务器信息，包括容器名和容器版本，以及所支持API的版本等，</p>
+</li>
+</ul>
+<h2>4、客户端（用户）请求</h2>
+<h3>4.1请求和响应：这是一切一切的关键（严格按照HTTP协议开发的API）</h3>
+<p><font color="red"><strong>针对Servlet的每次请求，Web服务器在调用Service()之前，都会创建两个对象，分别是HttpServletRequest和HttpServletResponse。其中，HttpServletRequest用于封装HTTP请求信息，简称request对象。HttpServletResponse用于封装HTTP响应信息，简称Response对象。</strong></font><br></p>
+<p><font color="red"><strong>需要注意的是，在Web服务器运行阶段，每个Servlet都只会创建一个实例对象。然而，每次HTTP请求，Web服务器都会调用所请求Servlet实例的service(HttpServletRequest,HttpServletResponse)方法，重新创建一个  request对象和response对象。</strong></font></p>
+<p><img src="24.PNG" /><br>
+<strong>HTTP请求方法确定究竟运行doGet()还是doPost()</strong><br>
+<strong>要记住，客户的请求总是包含一个特定的HTTP方法。如果这个HTTP方法是GET,service（）方法就会调用doGet()。如果这个HTTP请求方法是POST,service()方法就会调用doPost（）。</strong><br>
+<img src="25.PNG" /></p>
+<h3>4.2 Request对象</h3>
+<p><font color="red" size="10px"> 记住一点，request与response都是对HTTP协议的封装。</font></p>
+<p><strong>在Servlet API中，定义了一个HTTPServletRequest接口，专门用来封装HTTP请求消息。由于HTTP请求消息分为请求行、请求消息头和请求消息体三部分，因此在HttpServletRequest接口中定义了获取请求行、请求头和请求消息体的相关方法。</strong><br></p>
+<h4>4.2.1 获取请求行消息的相关方法</h4>
+<table>
+<thead>
+<tr>
+	<th>方法</th>
+	<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td>getMethod()</td>
+	<td><strong>获取HTTP请求消息体中的请求方式（如GET、POST)</strong></td>
+</tr>
+<tr>
+	<td>getRequestUri()</td>
+	<td><strong>获取请求行中资源名称部分，即位于URL主机和端口之后、参数部分之前的部分</strong></td>
+</tr>
+<tr>
+	<td>getQueryString()</td>
+	<td><strong>获取请求行中的参数部分，也就是资源路径名后面的问号(?)以后的所有内容</strong></td>
+</tr>
+<tr>
+	<td>getProtocol()</td>
+	<td><strong>用于获取请求行中的协议名和版本，例如：HTTP 1.0/HTTP 1.1</strong></td>
+</tr>
+</tbody>
+</table>
+<h4>4.2.2 获取请求消息头的相关方法</h4>
+<pre><code>当请求Servlet时，需要通过请求头向服务器传递附加信息，例如，客户端可以接受的数据类型，压缩方式、语言等。为此，在HttpServletRequest接口中，定义了一系列用于获取HTTP请求头字段的方法。
+</code></pre>
+
+<table>
+<thead>
+<tr>
+	<th>方法</th>
+	<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td>getHeader(String name)</td>
+	<td><strong>获取指定头字段的值</strong></td>
+</tr>
+<tr>
+	<td>getHeaders(String name)</td>
+	<td><strong>返回多个</strong></td>
+</tr>
+<tr>
+	<td>getContentType()</td>
+	<td><strong>用于获取Content-Type头字段的值，结果为String类型</strong></td>
+</tr>
+<tr>
+	<td>getContentLength()</td>
+	<td><strong>用于获取Content-Length头字段的值，结果为 INT类型</strong></td>
+</tr>
+<tr>
+	<td>getCharcterEncoding()</td>
+	<td><strong>用于返回请求信息的实体部分的字符集编码</strong></td>
+</tr>
+</tbody>
+</table>
+<h4>4.2.3 获取请求消息体的方法（不常用，下面的方法常用）</h4>
+<p><strong>用于HTTP请求消息中，用户提交的大量表单数据都是通过消息体发送给服务器的，为此，在HTTPServletRequest接口中，同样遵循以IO流传递大量数据的设计理念。（其实不常用）</strong><br>
+<font color="red"><strong>在实际应用中不常用。</strong></font><br></p>
+<table>
+<thead>
+<tr>
+	<th>方法</th>
+	<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td>getInputStream()</td>
+	<td><strong>获取表示实体内容的ServletInputStream对象</strong></td>
+</tr>
+<tr>
+	<td>getReader()</td>
+	<td><strong>获取表示实体内容的BufferedReader对象，该对象会将实体内容中的字节按照请求消息中指定的字符集编码转换成文本字符串</strong></td>
+</tr>
+</tbody>
+</table>
+<p><img src="31.PNG" />
+<img src="32.PNG" /></p>
+<h4>4.2.4 获取请求参数</h4>
+<pre><code>容器做了字符串的处理工作，这样我们就可以直接获取请求参数啦！！！
+</code></pre>
+
+<p><strong>在实际开发中，经常需要获取用户提交的表单数据，例如：用户名、密码、电子邮件等，为了方便获取表单中的请求参数，在HttpServletRequest接口中，定义了一系列获取请求参数的方法</strong><br></p>
+<table>
+<thead>
+<tr>
+	<th>方法</th>
+	<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td>getParameter(String)</td>
+	<td>根据参数获取传送的值</td>
+</tr>
+<tr>
+	<td>getParameterValues()</td>
+	<td>获取参数值</td>
+</tr>
+<tr>
+	<td>getParameterMap()</td>
+	<td>用于将请求消息中的所有参数名和值封装到一个Map对象返回</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h4>4.2.5 通过Request对象传递数据 （在对象 转发时可以用到）</h4>
+<p><strong>相当于为对象request绑定了一个Object</strong><br>
+<strong>Request对象不仅可以获取一系列数据，还可以通过属性传递数据，</strong><br></p>
+<table>
+<thead>
+<tr>
+	<th>方法</th>
+	<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td>setAttribute(String,Object)</td>
+	<td><strong>将一个对象与一个名称关联后存进ServletRequest对象</strong></td>
+</tr>
+<tr>
+	<td>getAttribute(String name)</td>
+	<td><strong>从ServletRequest对象中返回指定名称的属性对象</strong></td>
+</tr>
+<tr>
+	<td>removeAttribute(String name)</td>
+	<td><strong>从ServletRequest对象中删除指定名称的属性</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>4.3 RequestDispatcher对象的应用</h3>
+<p><em>当一个Web资源受到客户端的请求后，如果希望服务器通知另一个资源去处理请求，这时，除了使用sendRedirect()方法请求重定向外，还可以通过 RequestDispatcher接口对象来实现。在ServletRequest接口中定义了一个获取RequestDispatcher对象的方法：</em></p>
+<pre><code>方法： getRequestDispathcer(String path)
+
+      返回封装了某个路径锁指定资源的RequestDispatcher对象。
+</code></pre>
+
+<p><strong>获取到RequestDispatcher对象后，最重要的工作就是通知其他Web资源处理当前的Servlet，为此在RequestDispatcher接口中，定义了两个相关的方法：</strong><br></p>
+<table>
+<thead>
+<tr>
+	<th>方法</th>
+	<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td><strong>forward(ServletRequest request, ServletResponse response)</strong></td>
+	<td><strong>用于将请求从一个Servlet传递给另外一个Web资源。在Servlet中，可以对请求做一个初步的处理，然后通过调用这个方法，将请求传递给其他资源进行响应</strong></td>
+</tr>
+<tr>
+	<td><strong>include(ServletRequest request, ServletResponse response)</strong></td>
+	<td><strong>该方法用于将其他的资源作为当前响应内容包含金老</strong></td>
+</tr>
+</tbody>
+</table>
+<h4>4.3.1 请求转发</h4>
+<p><strong>在Servlet中，如果当前Web资源不想处理他的访问请求，可以通过forward()方法将当前请求传递给其他的Web资源进行处理。这种方式称为请求转发。</strong><br></p>
+<p><img src="33.JPG" />
+<font color="red"><strong>forward()方法不仅可以实现请求转发，还可以使转发页面和转发到的页面共享数据。需要注意的是存储在request对象中的数据只对当前请求有效，而对其他请求无效。</strong></font><br></p>
+<p>```</p>
+<pre><code>public class FirstServlet extends HttpServlet {
+
+@Override
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+    resp.setContentType(&quot;text/html;charset=utf-8&quot;);
+    // 将数据存储到request对象中
+    req.setAttribute(&quot;存储转发的数据&quot;, &quot;我爱你&quot;);
+
+    //转发
+    req.getRequestDispatcher(&quot;/test2&quot;).forward(req, resp); //将req和resp对象全部转发出去
+}
+
+-------------------------------------------------------------
+public class SecondServlet extends HttpServlet{
+
+@Override
+protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    PrintWriter out = resp.getWriter();
+    String message = (String) req.getAttribute(&quot;存储转发的数据&quot;);
+    out.print(message);
+}
+</code></pre>
+
+<p>````</p>
+<h4>4.3.2请求包含</h4>
+<p><strong>请求包含指的是使用include()方法将Servlet请求转发给其他Web资源进行处理，与请求转发不同的是，在请求包含中，既包含当前Servlet的相应的信息也包含其他Web资源的响应信息。</strong>
+<img src="34.JPG" /></p>
+<h2>5.响应对象(response)</h2>
+<h3>5.1 响应对象</h3>
+<p><strong>由于HTTP响应消息分为状态行、响应消息头、消息体三部分，因此，在HTTPServletResponse接口中定义了向客户端发送响应状态码，响应消息头、响应消息体的方法。</strong><br>
+响应要返回给客户。这是浏览器得到、解析并呈现给用户的东西。一般地，你会使用响应对象得到一个输出流（通常是一个Writer）,并使用这个流写出HTML（或其他类型的内容）</p>
+<p><img src="26.PNG" />
+<img src="27.PNG" /></p>
+<h3>5.2 Response对象</h3>
+<h4>5.2.1 发送状态码相关方法</h4>
+<table>
+<thead>
+<tr>
+	<th>方法</th>
+	<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td>setStatus()</td>
+	<td><strong>设置HTTP响应信息的状态码</strong></td>
+</tr>
+<tr>
+	<td>sendErrror(int sc)</td>
+	<td><strong>发送表示错误信息的状态码</strong></td>
+</tr>
+</tbody>
+</table>
+<h4>5.2.2 发送响应消息头的相关方法</h4>
+<table>
+<thead>
+<tr>
+	<th>方法</th>
+	<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td>setHeader()</td>
+	<td><strong>设置响应首部</strong></td>
+</tr>
+<tr>
+	<td>addheader()</td>
+	<td><strong>增加响应首部</strong></td>
+</tr>
+<tr>
+	<td>addIntHeader()</td>
+	<td><strong>增加包含整数值的响应头</strong></td>
+</tr>
+<tr>
+	<td>setIntHeader()</td>
+	<td><strong>设置包含整数值的响应头</strong></td>
+</tr>
+<tr>
+	<td>setContentLength(int len)</td>
+	<td><strong>设置响应消息的实体内容的大小，单位为字节</strong></td>
+</tr>
+<tr>
+	<td>setContentType()</td>
+	<td>设置内容类型（<strong>必须要设置。一般为text/html；charset=UTF-8</strong>）</td>
+</tr>
+<tr>
+	<td>setCharacterEncoding(String charset)</td>
+	<td><strong>设置输出内容使用的字符编码，对HTTP来说，就是设置Content-type;  必须在 getWriter() 方法之前执行</strong></td>
+</tr>
+</tbody>
+</table>
+<h4>5.2.3  发送响应消息体相关的方法</h4>
+<p><font color="red"><strong>用于在HTTP响应消息中，大量的数据都是通过响应消息体传递的，因此，ServletResponse遵循以IO流传递大量数据的设计理念，在发送响应消息体时，定义了两个与输出流相关的方法。</strong></font><br>
+<font color="red" size="10px"> 一般不用reponse.write()将内容从Servlet发送至HTML,所以引入JSP。</font></p>
+<table>
+<thead>
+<tr>
+	<th>方法</th>
+	<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td><strong>getOutputStream()</strong></td>
+	<td><strong>获取字节输出流对象</strong></td>
+</tr>
+<tr>
+	<td><strong>getWriter()</strong></td>
+	<td><strong>获取字符输出流对象,Returns a <code>PrintWriter</code> object that can send character text to the client.The <code>PrintWriter</code> uses the character encoding returned by {@link #getCharacterEncoding}.</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>5.3 利用response解决的一些问题</h3>
+<p><font color="blue" size="10px"> <strong>一些设置响应首部字段解决问题的应用：</strong></font><br></p>
+<h4>5.3.1 解决中文乱码问题</h4>
+<p><em>1、为什么有中文乱码问题？</em><br>
+<em>2、怎么解决乱码问题？</em><br>
+<strong>数据编解码格式不统一造成的，为了解决只需统一编解码格式即可，浏览器和编码格式最好统一为utf-8这种格式</strong></p>
+<p><img src="29.PNG" /></p>
+<hr />
+<hr />
+<h4>5.3.2  网页定时刷新并跳转</h4>
+<p><strong>在Web开发中，有时会遇到定时跳转页面的需求。在HTTP中定义了一个Refresh头字段，它可以通知浏览器在指定的时间内自动刷新并跳转到其他页面。</strong><br></p>
+<pre><code>其实就是设置一个响应首部字段，通知浏览器接下来可以重新发送一个请求，跳转到指定的页面。
+
+HTTP协议中定义了一个Refresh头字段，用于告诉浏览器过多少秒后自动刷新页面。在Refresh头字段的时间设置值后面还可以用分号（;）分隔后，再指定一个URL地址，这将让浏览器在指定的时间值后自动去访问该URL地址指向的资源。 
+
+'''
+resp.setHeader(&quot;Refresh&quot;,&quot;2;http://WWW.baidu.com&quot; ); //2秒后跳转http://www.baidu.com
+'''
+</code></pre>
+
+<p><strong>截取的请求和响应报文：</strong></p>
+<p><img src="30.PNG" /></p>
+<hr />
+<hr />
+<p><font color="red"><strong>禁止浏览器缓存页面：</strong></font><br></p>
+<pre><code>由于大多数网页内容都不会发生变化，因此，为了加快访问速度，很多浏览器都对访问过的页面进行缓存，
+
+例如表单的提交问题，为了解决问题，在HTTP响应信息中，需要设置以下头字段：
+
+Expires:0
+Cache-control:no-cache
+Pragram:no-cache
+</code></pre>
+
+<hr />
+<hr />
+<h4>5.3.3 请求重定向</h4>
+<p><strong>注意请求重定向与请求转发的区别：</strong><br></p>
+<pre><code>在某些情况下，针对客户端的请求，一个Servlet类可能无法完成全部的工作。
+
+这时，可以使用请求重定向来完成。所谓请求重定向，指的是Web服务器接收到客户端的请求后，可能由于某些条件限制，不能访问当前URL锁指向Web资源，而是指定了一个新的资源路径，让客户端重新发送请求。
+
+为了实现请求重定向，在HTTPServletResponse接口中，定义了一个sendRedirect()方法，该方法用于生成 302 响应码 和Location 响应头，
+从而通知客户端重新访问Location响应头中指定的URL，sendRedirect()
+</code></pre>
+
+<p><img src="36.jpg" /></p>
+<table>
+<thead>
+<tr>
+	<th>方法</th>
+	<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+	<td>sendRedirect(String location)</td>
+	<td>重定向</td>
+</tr>
+</tbody>
+</table>
+<p><img src="28.PNG" /></p>
+<hr />
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
