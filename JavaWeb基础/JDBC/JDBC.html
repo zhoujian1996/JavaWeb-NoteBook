@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>00线性表</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<style type="text/css">
+/* GitHub stylesheet for MarkdownPad (http://markdownpad.com) */
+/* Author: Nicolas Hery - http://nicolashery.com */
+/* Version: b13fe65ca28d2e568c6ed5d7f06581183df8f2ff */
+/* Source: https://github.com/nicolahery/markdownpad-github */
+
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  padding: 20px;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table, pre {
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 20px 0 10px;
+  padding: 0;
+  font-weight: bold;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1 {
+  font-size: 28px;
+  color: #000;
+}
+
+h2 {
+  font-size: 24px;
+  border-bottom: 1px solid #ccc;
+  color: #000;
+}
+
+h3 {
+  font-size: 18px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  color: #777;
+  font-size: 14px;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 30px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+
+pre, code, tt {
+  font-size: 12px;
+  font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+code, tt {
+  margin: 0 0px;
+  padding: 0px 0px;
+  white-space: nowrap;
+  border: 1px solid #eaeaea;
+  background-color: #f8f8f8;
+  border-radius: 3px;
+}
+
+pre>code {
+  margin: 0;
+  padding: 0;
+  white-space: pre;
+  border: none;
+  background: transparent;
+}
+
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  padding: 6px 10px;
+  border-radius: 3px;
+}
+
+pre code, pre tt {
+  background-color: transparent;
+  border: none;
+}
+
+kbd {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #DDDDDD;
+    background-image: linear-gradient(#F1F1F1, #DDDDDD);
+    background-repeat: repeat-x;
+    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
+    border-image: none;
+    border-radius: 2px 2px 2px 2px;
+    border-style: solid;
+    border-width: 1px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 10px;
+    padding: 1px 4px;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+
+/* TABLES
+=============================================================================*/
+
+table th {
+  font-weight: bold;
+}
+
+table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* IMAGES
+=============================================================================*/
+
+img {
+  max-width: 100%
+}
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // 生成目录列表
+        var outline = document.createElement("ul");
+        outline.setAttribute("id", "outline-list");
+        outline.style.cssText = "border: 1px solid #ccc;";
+        document.body.insertBefore(outline, document.body.childNodes[0]);
+        // 获取所有标题
+        var headers = document.querySelectorAll('h1,h2,h3,h4,h5,h6');
+        for (var i = 0; i < headers.length; i++) {
+            var header = headers[i];
+            var hash = _hashCode(header.textContent);
+            // MarkdownPad2无法为中文header正确生成id，这里生成一个
+            header.setAttribute("id", header.tagName + hash);
+            // 找出它是H几，为后面前置空格准备
+            var prefix = parseInt(header.tagName.replace('H', ''), 10);
+            outline.appendChild(document.createElement("li"));
+            var a = document.createElement("a");
+            // 为目录项设置链接
+            a.setAttribute("href", "#" + header.tagName + hash)
+            // 目录项文本前面放置对应的空格
+            a.innerHTML = new Array(prefix * 4).join('&nbsp;') + header.textContent;
+            outline.lastChild.appendChild(a);
+        }
+    });
+    // 类似Java的hash生成方式，为一段文字生成一段基本不会重复的数字
+    function _hashCode(txt) {
+         var hash = 0;
+         if (txt.length == 0) return hash;
+         for (i = 0; i < txt.length; i++) {
+              char = txt.charCodeAt(i);
+              hash = ((hash<<5)-hash)+char;
+              hash = hash & hash; // Convert to 32bit integer
+         }
+         return hash;
+    }
+</script>
+</head>
+<body>
+<h2>Chapter 0 线性表</h2>
+<p>在数据结构中，前人根据编程经验，抽象出来几种经典的数据类型，数据类型是干什么的？其实就是用来存储数据的，存储不同的数据可能要用到不同的东西，这些不同的东西也叫做数据的容器。<br><br>这些容器大致上分为  线性表、树（为什么叫树呢）、图、串等等，其中线性表最简单。为什么说他最简单呢，因为它逻辑上就是数据单元组成的一长串数据。那么怎么把这些数据组成一条线呢?<br><br><strong>前人总结啊，无外乎就两种，得把每种数据放在一个内存单元中，那么怎么确定这些内存单元的联系呢，这些内存单元可以连续啊，找到第一个位置的数据，那么第二个位置的数据只需在第一个位置加上地址偏移即可；当这些单元的地址没有规律，不连续时怎么办呢?那么必须得找一种方法让他们之间发生关系，可以让一个数据带有下一个数据的地址啊，也就是我有下一个数据的位置。</strong><br><br></p>
+<p><strong>我们可以打个比方，比如说我去找人，当我们去一个村子里找人时，怎么找啊？两种方法，从村东头开始，一家一家问，你是xx吗？人说不是，就不搭理你了，好吧你着去第二家，人说不是，你又得去第三家，，，。，，，</strong><br><br>
+<strong>我们可以换另外一种方法，还是问人家,你是xxx吗？人说不是。咱脸皮比较厚，接着问，那你知道它在哪吗？人说它在xxx家，你就接着去xxx家，这样就是第二中的方法啊。</strong><br><br></p>
+<p>让我们看看两种线性结构的图示：<br><br>
+<img src="0.png" /></p>
+<p><font color="red"><strong>途中的黄色部分，即存有下一个数据节点所在的内存位置，这样就可以把这些分散的数据串起来了。</strong></font><br><br></p>
+<h3>0.1 线性表的抽象数据类型</h3>
+<p><strong>有了数据的基本抽象，那么我们接下来要干什么呢》对这些数据进行操作啊？怎么操作，操作啥吗？给你数据你能干啥，增加数据，删除数据，分析数据啊，查找数据，修改数据啊，简单说来就是增删该查；因为两种数据结构不一样，所以操作方式也不一样，下面我们就分两种数据来讨论。</strong></p>
+<p>线性表的抽象数据类型定义如下：<br></p>
+<pre><code>ADT  线性表（List)
+
+Data 
+
+    线性表的数据对象集合为（a1,a2,....an),每个元素的类型均为DataType。
+    其中除第一个元素a1外，每一个元素有且只有一个前驱元素，除了最后一个元素an外，每一个元素有且只有一个直接猴急元素。
+
+Operation
+
+    InitList() :初始化操作，建立一个空的线性表L
+
+    IsEmpty() :若线性表为空，返回true，否则返回false
+
+    ClearList()  将线性表清空
+
+    getElement(index):返回线性表的第i个位置的元素、
+
+    contain(element)：在线性表中查找与给定值相等的元素，如果存在返回对应的索引，否则返回-1
+
+    insert(i,element)：在线性表第i个位置插入新元素
+
+    pop(index) ： 删除线性表index位置的元素
+
+    length()  返回线性表元素的个数
+</code></pre>
+
+<h3>0.2线性表的顺序存储结构</h3>
+<p><font color="red"><strong>因为顺序存储结构，地址是连续的，所以可以借助数组来实现。但是数组有个问题，就是定义数组的时候啊，必须先确定数组的长度，一旦数组的长度确定了，数组的长度就不能修改了，当我们在数组中存储的数据长度较小的时候，还可以，但是当存储数据的长度较多时，怎么办呢？让数组扩容吧，其实这种扩容也就是重新申请一个数组，然后把新数组的引用赋值给旧的数组。</strong></font><br></p>
+<p><strong>下面就来分析增删该查的几种方法：</strong><br>
+<font color="red" size="10px" >增</font><br>
+先来看看增加元素，有两个问题要解决，增什么，怎么增？也就是怎么干的问题。我们有一长串的数据是吧，把这个新的数据增加到哪里呢？无外乎三个地方，长串的首部，长串的尾部，长串的其余部分。是吧?<br><br></p>
+<p><strong>其实超长串的尾部添加最简单，为什么呢？新元素直接放到长串的最后，其余的元素不用动，前提是数组能放的下（要考虑健壮性的问题，也就是扩容性问题）。</strong><br><br></p>
+<p><strong>那么超数组的头部增加元素，我们想一想，其实动静挺大的，原数组的第一个节点咋办啊？原数组的第一个节点得朝后挪挪了吧，去第二个位置吧，那原数组的第二个节点怎么办呢，去第三个吧，这就相当于土匪里来了个能人啊，能人要当老大，那原来的老大只能当老二了。操作的时候，要从后往前操作，也就是最后一个元素先朝后挪，倒数第二个元素再往后挪。那么要懂多少次呢？原来的元素有多少就动多少部啊。</strong><br><br></p>
+<p><strong>超数组的其余位置增加元素呢，其实和超数组的头部增加是一样的啊？比如超index处增加元素，index（注意包括index)开始到最后的元素都得朝后移动动，得操作length-index次，在首部添加等价于index为0啊。</strong><br><br>
+<img src="1.PNG" /></p>
+<p>代码实现：<br><br></p>
+<pre><code>    //像数组中添加元素，向末尾添加
+public void add(String element) {
+    //当数组中的元素达到数组长度的一半时扩容
+    if(length&gt;size/2) {
+        reSize(size+size/2);
+        this.size = size+size/2;
+    }
+    //weilength个位置处赋值，因为索引从0开始，而Length时从1开始的
+    arr[length] = element; 
+    length++;
+}
+
+//向数组中添加元素，在指定索引位置处添加
+public void add(int index,String element) {
+    checkRange(index);
+    //当数组中的元素达到数组长度的一半时扩容
+    if(length&gt;size/2) {
+        reSize(size+size/2);
+        this.size = size+size/2;
+    }
+
+    //从index开始之后（包括的每一个元素朝后移动一位，从后面开始动）,需要移动length-index次
+    for(int i = length;i&gt;index;i--) {
+        arr[i] = arr[i-1];
+    }
+
+    //在index处赋上新的值
+    arr[index] = element;
+    length++;
+}
+</code></pre>
+
+<p><font color="red" size="10px" >删</font><br></p>
+<p><strong>删按照位置来说也有3种，首部，尾部，其他位置，删除尾部很简单的。删除首部和删除其余位置很简单，就是挪位置，把待删除位置的值给覆盖即可，与增加的区别就是操作顺序，是从index+1开始把之后的元素超前一次覆盖即可，需要操作(length-index-1）次。</strong>br&gt;<br><br></p>
+<p><img src="2.PNG" /></p>
+<pre><code>    //删除list中的元素,把index开始（不包括index)的所有元素朝前面移动一位即可,覆盖掉Index处的值即可，需要移动length-index-1次
+public void remove(int index) {
+    checkRange(index);
+    for(int i =index+1;i&lt;length;i++) {
+        arr[i-1] = arr[i];
+    }
+    length--;
+}
+</code></pre>
+
+<p><font color="red" size="10px" >改</font><br></p>
+<p><strong>修改就很简单了</strong><br></p>
+<p><font color="red" size="10px" >查</font><br></p>
+<p><strong>查找也很简答</strong><br></p>
+<pre><code>                //返回某个元素的索引值，
+    public int index(String element) {
+
+        //如果元素为空
+        if(element==null) {
+            //遍历数组中的元素
+            for(int i =0;i&lt;length;i++) {
+                if(arr[i]==null) {
+                    return i;
+                }
+            }
+
+        }else {
+            //遍历数组中的元素
+            for(int i =0;i&lt;length;i++) {
+                if(arr[i].equals(element)) {
+                    return i;
+                }
+            }
+        }
+        return -1;
+
+    }
+
+
+    //list是否包含某个元素
+    public boolean contains(String element) {
+        return index(element)!=-1;
+    }
+</code></pre>
+
+<h3>0.2线性表的链式存储结构</h3>
+<p>同线性表的顺序存储结构一样，线性表的链式存储结构方法也包含增删该查的方法，下面我们来分析。<br><br></p>
+<p><font color="red" size="10px" >增</font><br></p>
+<p><img src="11.JPG" />	</p>
+<p><strong>添加节点的时候，必须先生成一个空节点，然后再进行操作。</strong><br><br></p>
+<p><strong>当向链表的尾部添加节点的时候，直接让（1）原先的最后一个节点新生成的节点；（2）然后让最后的指针指向最后的节点</strong><br><br></p>
+<p><strong>当向链表的头部添加节点时，直接让（1）新生成的节点指向原先的第一个接待你；(2)然后让第一个指针执向最新的节点。</strong><br><br></p>
+<p><strong>在其余位置处，让（1)新生成的节点指向待原来Index节点(2)让index-1节点指向新生成的节点</strong><font color="red" size="10px">关键是获取index-1处的节点，可以写一个方法按照索引获取节点。</font><br><br></p>
+<pre><code>        //在index节点处插入值，这里就需要分析在头部插入值，在尾部插入值，在其他的位置插入值
+public void insert(int index,String element) {
+    //健壮性检查
+    checkRange(index);
+    //向链表的首部添加节点
+    if(index==0) {
+        //方法的拆分
+        push(element);
+        if(length==1) {
+            last = first;
+        }
+    //向链表的尾部添加节点
+    }else if(index==length-1) {
+        //方法的拆分
+        add(element);
+        if(length==1) {
+            first = last;
+        }
+    //向链表的中间部分添加节点
+    }else {
+        //获取待插入节点之前的一个节点
+        Node beforeNode = index(index-1);
+        //待插入的新节点 
+        Node newNode = new Node();
+        //设置新节点的数据
+        newNode.setData(element);
+        //设置新节点的下一个节点
+        newNode.setNext(beforeNode.getNext());
+        //设置新节点的上一个节点
+        beforeNode.setNext(newNode);
+        length++;
+    }
+
+}
+
+
+//在链表的头部插入值
+public void push(String element) {
+    //创建新的节点
+    Node newNode = new Node();
+    //设置新节点的值
+    newNode.setData(element);
+    //因为在链表的头部插入值，所以新生成的节点下一个节点为 之前链表的第一个节点
+    newNode.setNext(first);
+
+    //设置新的节点为头部节点
+    first = newNode;
+
+    //链表的长度自增
+    length++;
+}
+
+//在链表的尾部插入值
+public void add(String element) {
+    //创建新的节点
+    Node newNode = new Node();
+    //设置新节点的值
+    newNode.setData(element);
+    //设置新节点的下一个值
+    newNode.setNext(null);
+    //将新节点添加到原来节点的尾部
+    last.setNext(newNode);
+
+    //将新节点生命为尾部节点
+    last = newNode;
+
+    length++;
+
+}
+</code></pre>
+
+<p><font color="red" size="10px" >删</font><br>
+<img src="22.JPG" /><br></p>
+<p><strong>删除尾部节点的时候直接让尾部节点为null,让倒数第二个节点为尾部节点即可</strong><br><br>
+<strong>删除首部节点的时候，直接让首部节点为null,让第二个节点为首部节点</strong><br><br></p>
+<p><strong>删除其余位置的节点，让index-1也就是待删除的前一个节点指向待删除的后一节点即可</strong><br><br></p>
+<pre><code>//按照索引删除节点
+public void remove(int index) {
+    checkRange(index);
+    //删除头结点 
+    if(index==0) {
+        pop();
+
+    //删除尾部及诶按
+    }else if(index==length-1) {
+        delete();
+    }else {
+        //获取待删除之前的节点s
+        Node beforeNode = index(index-1);
+        //将待删除之前的节点直接指向待删除节点之后的节点，这样就没哟指向待删除节点的指针
+        beforeNode.setNext(beforeNode.getNext().getNext());
+        length--;
+    }
+
+
+}
+
+//删除链表中的第一个节点
+public void pop() {
+
+    Node oldFirst = first;
+    oldFirst = null;
+    //将新的节点设置为原来第二个节点
+    first = first.getNext();
+    length--;
+}
+
+//删除链表的最后一个节点
+public void delete() {
+
+    //获取倒数第二各节点
+    Node newLast = index(length-2);
+
+    System.out.println(newLast.getData());
+
+    newLast.setNext(null);
+    //将最后的一个节点设置为倒数第二个节点
+    last = newLast;
+    length--;
+
+}
+</code></pre>
+
+<p><font color="red" size="10px" >改，查</font><br></p>
+<p><strong>改查的方法都要便利链表获取index处的节点，所以要先提取出一个方法，在这个方法的基础上操作就简单多了</strong><br><br></p>
+<p><font color="red" size="10px"><strong>方法：工作指针后移</strong></font><br></p>
+<pre><code>    /**
+ * 
+ * @param index
+ * @return
+ */
+//获取index处的Node，这个方法的复杂度为O(N) 查找index处的节点，这个方法比较重要
+public Node index(int index) {
+    checkRange(index);
+    //遍历链表
+    Node currentNode = first;
+    //遍历链表，注意 迭代的次数 为Index次
+    for(int i =0;i&lt;index;i++) {
+        currentNode = currentNode.getNext();
+    }
+    return currentNode;
+
+}
+</code></pre>
+
+<p><strong>分析：至此，我们初步分析完了这两种数据结构的方法，可以看出来对于数组行的线性表来说，增删元素比较麻烦，因为它要动其他的元素，而对于链表不需要修改其他的元素；查找元素的话数组比较快，而链表比较慢。因此数组使用 修改查询比较多的，而链表使用于增加删除比较多</strong><br><br></p>
+<h3>0.3、循环链表</h3>
+<p><strong>将单链表中终端节点的指针端由空指针指向头结点，就使得整个单链表形成一个环，这种头尾相接的单链表称为单循环链表，称为循环链表（Circular linkedlist)</strong><br><br></p>
+<p><img src="8.PNG" /></p>
+<p><strong>其实循环链表和单链表的主要差异就在于循环的判断条件上，原来的判断条件是p-&gt;next是否为空，现在则是p-&gt;nedxt不等于头结点，则循环未结束。</strong><br><br></p>
+<p><font color="red" size="10px"> <strong>增删该查对于一般的元素是一样的，有区别的仅仅是 首尾的元素。因此仅仅需要对首位元素加以注意</strong></font><br></p>
+<hr />
+<p><font color="red" size="10px"> <strong>增</strong></font><br>
+<img src="3.PNG" /></p>
+<pre><code>//在index节点处插入数据
+public void insert(int index,String data) {
+    //没有进行index值的检查
+    //向头部添加节点
+    if(index==0) {
+        push(data);
+    //向尾部添加节点
+    }else if(index==length) {
+        add(data);
+    }else {
+        //向其余位置添加元素，和普通的链表没有区别
+        Node beforeNode = getNode(index-1);
+
+        Node newNode = new Node();
+        newNode.setData(data);
+        newNode.setNext(beforeNode.getNext());
+        beforeNode.setNext(newNode);
+        length++;
+    }
+
+
+
+}
+
+
+
+//在头添加节点
+public void push(String data) {
+
+    Node newNode = new Node();
+    newNode.setData(data);
+
+    //如果之前为空链表
+    if(length==0) {
+        first = last = newNode;
+        last.setNext(first);
+    }else {
+
+        last.setNext(newNode);
+        newNode.setNext(first);
+        first = newNode;
+    }
+    length++;
+
+
+
+}
+
+//在尾部添加节点
+public void add(String data) {
+    //先生成一个新的节点
+    Node newNode = new Node();
+    //设置节点的数据
+    newNode.setData(data);
+    //如果之前为空链表
+    if(length==0) {
+        first = last = newNode;
+        last.setNext(first);
+    }else {
+        last.setNext(newNode);
+        newNode.setNext(first);
+        last = newNode;
+    }
+
+    length++;
+
+
+}
+</code></pre>
+
+<p><font color="red" size="10px"> <strong>删</strong></font><br></p>
+<p><img src="4.PNG" /></p>
+<pre><code>//删除链表任意位置的节点
+public void remove(int index) {
+
+    if(index==0) {//删除首部节点
+        pop();
+    }else if(index==length-1) {//删除尾部节点
+        delete();
+    }else {//删除其余位置的节点
+        Node beforeNode = getNode(index-1);
+        //待删除之前的一个节点直接指向指向待删除节点的下一个节点
+        beforeNode.setNext(beforeNode.getNext().getNext());
+    }
+
+}
+
+
+//删除链表的首部节点
+public void pop() {
+
+    if(length==0) {
+        throw new IllegalArgumentException(&quot;索引出错&quot;);
+    }else {
+        //新的首部节点
+        Node newFirst = first.getNext();
+        first.setNext(null);
+        last.setNext(newFirst);
+        first = newFirst;
+        length--;
+
+    }
+
+
+}
+
+
+//删除链表的尾部节点
+public void delete() {
+
+    if(length==0) {
+        throw new IllegalArgumentException(&quot;索引出错&quot;);
+    }else {
+        //新的尾部节点
+        Node newLast = getNode(length-2);
+        System.out.println(newLast.getData());
+        newLast.setNext(first);
+        last = newLast;
+        length--;
+    }
+
+}
+</code></pre>
+
+<p><strong>其余的方法和普通的链表基本一样</strong><br></p>
+<hr />
+<hr />
+<h3>0.4、 双向链表</h3>
+<p><strong>在单链表中，有了next指针，这就使得我们要查找下一个节点的时间复杂度为O(1).可是如果我们要查找的是上一个节点的话，那么最坏的时间复杂度就是O(n)了，因为我们每次都要从头开始遍历查找。</strong><br><br><br>
+<strong>为了克服单向性这一缺点，提出一种双向链表。双向链表是在单链表的每个节点中，再设置一个指向其前区节点的指针域.所以在双向链表中的节点都有两个指针域，一个指向后继，另一个指向直接前驱。</strong><br><br></p>
+<p><img src="111.png" /></p>
+<p><strong>双向链表是单链表扩展出来的结构，所以它的很多操作和单链表相同，比如求指针的长度，查找元素，获得元素的位置，这些操作都主要涉及一个方向的指针即可，另一个指针多了也不能提供什么帮助</strong><br><br></p>
+<p><font color="red" size="10px"><strong>在插入和删除时，需要更改两个指针变量。</strong></font><br><br></p>
+<p><strong>双向链表的指针工作量通常是单链表的2呗。</strong><br></p>
+<p><img src="9.PNG" /></p>
+<p><font color="red" size="10px"><strong>增：通常要修改四个指针</strong></font><br><br></p>
+<p><img src="13.PNG" /></p>
+<p><img src="14.PNG" />
+<strong>要注意指针的修改顺序</strong><br><br></p>
+<pre><code>//向链表index处增加节点
+public void insert(int index,String data) {
+    //不用进行健壮性检查
+    if(index==0) {//首部添加
+        push(data);
+    }else if(index ==length-1) {//尾部添加
+        add(data);
+    }else {
+        //获取待index-1处的接待你
+        Node beforeNode = getNode(index-1);
+        //新的节点
+        Node newNode = new Node();
+        //设置数据
+        newNode.setData(data);
+
+        //设置新生成节点的关系
+        newNode.setPrior(beforeNode);
+        newNode.setNext(beforeNode.getNext());
+
+
+        beforeNode.getNext().setPrior(newNode);
+        beforeNode.setNext(newNode);
+
+        length++;
+
+
+    }
+
+
+
+
+}
+
+
+//向链表的尾部增加节点
+public void add(String data) {
+    if(length==0) {//空节点
+        Node node = new Node();
+        node.setData(data);
+        node.setNext(node);
+        node.setNext(node);
+        first = last = node;
+
+    }else {
+        //新的节点
+        Node newNode = new Node();
+        newNode.setData(data);
+        //原先的最后一个节点
+        Node oldLast = last;
+
+        //四部赋值
+        oldLast.setNext(newNode);
+        newNode.setPrior(oldLast);
+
+        newNode.setNext(first);
+        first.setPrior(newNode);
+        last = newNode;
+
+    }
+
+    length++;
+}
+
+//向链表的头部a增加节点
+public void push(String data) {
+    //原先是空的节点
+    if(length==0) {//空节点
+        Node node = new Node();
+        node.setData(data);
+        node.setNext(node);
+        node.setNext(node);
+        first = last = node;
+
+    }else {
+        //新的节点
+        Node newNode = new Node();
+        newNode.setData(data);
+        //原先的最后一个节点
+        Node oldFirst = first;
+        //四部赋值
+        oldFirst.setPrior(newNode);
+        newNode.setNext(first);
+
+        newNode.setPrior(last);
+        last.setNext(newNode);
+        first = newNode;
+    }
+
+    length++;
+}
+</code></pre>
+
+<p><font color="red" size="10px"><strong>删：通常要修改二个指针</strong></font><br><br></p>
+<p><img src="15.png" /></p>
+<pre><code>//按照索引删除节点
+public void remove(int index) {
+    //删除首部接单
+    if(index==0) {
+
+        pop();
+
+    //删除尾部节点
+    }else if(index==length-1) {
+        delete();
+    //删除其余位置处的节点
+    }else {
+        Node beforeNode = getNode(index-1);
+
+        beforeNode.setNext(beforeNode.getNext().getNext());
+        beforeNode.getNext().getNext().setPrior(beforeNode);
+        length--;
+    }
+
+}
+
+
+//删除尾部节点
+public void delete() {
+    if(length==0) {
+        throw new IllegalArgumentException(&quot;索引位置错误&quot;);
+    }else {
+        Node newLast = getNode(length-2);
+
+        newLast.setNext(first);
+        first.setPrior(newLast);
+        last = newLast;
+        length--;
+    }
+
+}
+
+
+//删除首部节点
+public void pop() {
+
+    if(length==0) {
+        throw new IllegalArgumentException(&quot;索引位置错误&quot;);
+    }else {
+        Node newFirst = first.getNext();
+
+        newFirst.setPrior(last);
+        last.setNext(newFirst);
+        first = newFirst;
+        length--;
+    }
+
+}
+</code></pre>
+
+<h3>0.5小结</h3>
+<p><img src="16.png" /><br>
+<strong>在本文中，我们学习了一种数据结构:线性表，按照底层的组成又可以分为顺序线性表和链式线性表。顺序线性表的底层就是数组，在操作的时候比较难的一点就是数组的长度必须是固定的，这就牵扯到扩容与数组索引越界的e问题；</strong><br><br></p>
+<p><strong>而链表时一个一个节点所组成，每个节点由数据与指针组成，我们可以按照指针的各种类型将链表再次细分，如果最后一个节点的指针指向NULL这就是最简单的链表；如果最后一个节点的指针指向头结点那这就是循环链表；如果每个节点有两个指针，即前向指针和后项指针，那这就是双向链表。</strong><br><br></p>
+<p><strong>对于线性表的常规操作就是增删该查，在数组中比较简单，主要难的就是数组的拷贝，与数组的扩容，记住下面几条结论</strong>：<br><br></p>
+<ul>
+<li>在index处插入节点，index9包括之后的节点往后挪（从后往前)需要移动(length-index）次</li>
+<li>删除index处节点，index之后的数据往前挪即可(从前往后)需要移动(length-index-1)次</li>
+</ul>
+<p><strong>对于链表的操作：抓住节点Node与指针的指向，对链表的头部，链表的尾部，链表的其他地方增删该查分清情况进行讨论，增加节点时，先生辰新的节点，然后分析其前后指针的值该怎么设置；删除节点的时，要小心。无论增加还是删除，都要先获得index-1也就是待插入或待删除节点的前一个节点，这样可以方便操作</strong><br><br></p>
+
+</body>
+</html>
+<!-- This document was created with MarkdownPad, the Markdown editor for Windows (http://markdownpad.com) -->
